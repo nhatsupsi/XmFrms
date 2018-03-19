@@ -42,14 +42,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\MainPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\MvvmLightPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -66,18 +58,10 @@
     <Compile Include="Views\ClockSave.xaml.cs">
       <DependentUpon>ClockSave.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Views\ClockSaveBinding.xaml.cs">
       <DependentUpon>ClockSaveBinding.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\ClockSaveBindingModel.cs" />
-    <Compile Include="Views\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="Views\MvvmLightPage.xaml.cs">
-      <DependentUpon>MvvmLightPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation">

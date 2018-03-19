@@ -14,8 +14,8 @@ namespace ClockApp
 
             var tabbedPage = new TabbedPage();
 
-            tabbedPage.Children.Add(new Views.ClockSaveBinding() { Title = "clock save" });
-            tabbedPage.Children.Add(new ClockAppPage() { Title = "clock app" });
+            tabbedPage.Children.Add(new Views.ClockSaveBinding() { Title = "Time save" });
+            tabbedPage.Children.Add(new ClockAppPage() { Title = "Hello Xamarin" });
 
             MainPage = tabbedPage;
 
@@ -36,25 +36,4 @@ namespace ClockApp
             // Handle when your app resumes
         }
     }
-
-    /*
-    public partial class App : Application
-    {
-        private static ViewModelLocator _locator;
-
-        public static ViewModelLocator Locator
-        {
-            get
-            {
-                return _locator ?? (_locator = new ViewModelLocator());
-            }
-        }
-
-
-        public static Page GetMainPage()
-        {
-            return new MvvmLightPage();
-        }
-    }
-    */
 }
