@@ -73,10 +73,10 @@ namespace ClockApp.ViewModel
             set{
                 if(buttonText!= value)
                 {
-                    buttonText = value +" " +numClicked;
+                    numClicked++;
+                    buttonText = value +" " +numClicked + " at " + this.DateTime.ToString("h:mm:ss tt");
                     if(PropertyChanged!=null)
                     {
-                        numClicked++;
                         PropertyChanged(this, new PropertyChangedEventArgs("ButtonText"));
                     }
                 }

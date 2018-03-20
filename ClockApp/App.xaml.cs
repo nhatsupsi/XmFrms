@@ -14,8 +14,9 @@ namespace ClockApp
 
             var tabbedPage = new TabbedPage();
 
-            tabbedPage.Children.Add(new Views.ClockSaveBinding() { Title = "Time save" });
             tabbedPage.Children.Add(new ClockAppPage() { Title = "Hello Xamarin" });
+            tabbedPage.Children.Add(new Views.ClockView() { Title = "Clock" });
+            tabbedPage.Children.Add(new Views.ClockSaveBinding() { Title = "Time save" });
 
             MainPage = tabbedPage;
 

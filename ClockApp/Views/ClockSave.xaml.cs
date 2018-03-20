@@ -12,8 +12,6 @@ namespace ClockApp.Views
             Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
             SizeChanged += (object sender, EventArgs args) =>
             {
-                // Scale the font size to the page width
-                // (based on 11 characters in the displayed string).
                 if (this.Width > 0)
                     clockLabel.FontSize = this.Width / 6;
             };
