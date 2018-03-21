@@ -130,6 +130,19 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.0.6</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>2.5.0.280555</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClockApp.Core\ClockApp.Core.csproj">
+      <Project>{a27bb825-1081-47f5-b3b8-ff502c8e3cda}</Project>
+      <Name>ClockApp.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClockApp\ClockApp.Core.Forms.csproj">
+      <Project>{a8da4421-8394-4fd9-a1b1-c6cc8afaf047}</Project>
+      <Name>ClockApp.Core.Forms</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

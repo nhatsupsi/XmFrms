@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-namespace ClockApp.Views
+namespace ClockApp.Core.Forms.Views
 {
     public partial class ClockView : ContentPage
     {

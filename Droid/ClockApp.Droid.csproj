@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Xamarin.Forms.2.5.0.280555\build\netstandard1.0\Xamarin.Forms.props" Condition="Exists('..\packages\Xamarin.Forms.2.5.0.280555\build\netstandard1.0\Xamarin.Forms.props')" />
   <PropertyGroup>
@@ -120,9 +120,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClockApp\ClockApp.csproj">
+    <ProjectReference Include="..\ClockApp\ClockApp.Core.Forms.csproj">
       <Project>{A8DA4421-8394-4FD9-A1B1-C6CC8AFAF047}</Project>
-      <Name>ClockApp</Name>
+      <Name>ClockApp.Core.Forms</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

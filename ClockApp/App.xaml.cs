@@ -1,8 +1,6 @@
-﻿using ClockApp.ViewModel;
-using ClockApp.Views;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
-namespace ClockApp
+namespace ClockApp.Core.Forms
 {
 
     public partial class App : Application
@@ -16,8 +14,8 @@ namespace ClockApp
 
             tabbedPage.Children.Add(new ClockAppPage() { Title = "Hello Xamarin" });
             tabbedPage.Children.Add(new Views.ClockView() { Title = "Clock" });
+            tabbedPage.Children.Add(new Views.ClockSave() { Title = "Clock save" });
             tabbedPage.Children.Add(new Views.ClockSaveBinding() { Title = "Time save" });
-
             MainPage = tabbedPage;
 
         }

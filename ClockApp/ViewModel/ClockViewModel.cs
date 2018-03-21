@@ -1,9 +1,8 @@
-﻿
-using System;
+﻿using System;
 using System.ComponentModel;
 using Xamarin.Forms;
 
-namespace ClockApp.ViewModel
+namespace ClockApp.Core.Forms.ViewModel
 {
     class ClockViewModel : INotifyPropertyChanged
     {

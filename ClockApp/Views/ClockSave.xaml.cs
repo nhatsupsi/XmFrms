@@ -1,7 +1,6 @@
 ﻿using Xamarin.Forms;
 using System;
-using System.Collections.Generic;
-namespace ClockApp.Views
+namespace ClockApp.Core.Forms.Views
 {
     public partial class ClockSave : ContentPage
     {
@@ -34,7 +33,8 @@ namespace ClockApp.Views
             }
             else
             {
-                loggerLayout.Children.RemoveAt(0);
+                if(loggerLayout.Children.Count!=0)
+                    loggerLayout.Children.RemoveAt(0);
             }
             removeButton.IsEnabled = loggerLayout.Children.Count > 0;
         }

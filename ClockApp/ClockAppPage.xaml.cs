@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace ClockApp
+namespace ClockApp.Core.Forms
 {
     public partial class ClockAppPage : ContentPage
     {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:ClockApp.ViewModel"
-             x:Class="ClockApp.Views.ClockView"
+             xmlns:local="clr-namespace:ClockApp.Core.Forms.ViewModel"
+             x:Class="ClockApp.Core.Forms.Views.ClockView"
              Title="Clock Page">
 
     <Label Text="{Binding DateTime, StringFormat='{0:T}'}"

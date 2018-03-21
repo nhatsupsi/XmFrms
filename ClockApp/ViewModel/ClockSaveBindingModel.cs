@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xamarin.Forms;
 
-namespace ClockApp.ViewModel
+namespace ClockApp.Core.Forms.ViewModel
 {
     public class ClockSaveBindingModel : INotifyPropertyChanged
     {

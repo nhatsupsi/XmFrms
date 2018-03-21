@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ClockApp.Views.ClockSave">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ClockApp.Core.Forms.Views.ClockSave">
     <StackLayout >
          <StackLayout.Padding>
          <OnPlatform x:TypeArguments="Thickness"
@@ -8,13 +8,16 @@
              WinPhone="0"/>
          </StackLayout.Padding>
         <Button Text="add" x:Name='addButton' HorizontalOptions="CenterAndExpand" Clicked="OnButtonClicked"></Button>
-        <Button Text="remove" x:Name='removeButton' HorizontalOptions="CenterAndExpand" Clicked="OnButtonClicked"></Button>
+        <Button Text="remove" x:Name='removeButton' HorizontalOptions="CenterAndExpand" Clicked="OnButtonClicked" IsEnabled="False"></Button>
 
         <Label Text="Clock" x:Name='clockLabel' HorizontalOptions="Center" VerticalOptions="Center"></Label>
+        <!--
         <ScrollView VerticalOptions="FillAndExpand">
             <ScrollView.Content>
                 <StackLayout x:Name='loggerLayout'></StackLayout>
             </ScrollView.Content>
         </ScrollView>
+        -->
+        <StackLayout x:Name='loggerLayout'></StackLayout>
     </StackLayout>
 </ContentPage>

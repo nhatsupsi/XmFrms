@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:ClockApp.ViewModel"
-             x:Class="ClockApp.Views.ClockSaveBinding"
+             xmlns:local="clr-namespace:ClockApp.Core.Forms.ViewModel"
+             x:Class="ClockApp.Core.Forms.Views.ClockSaveBinding"
              Title="Clock Page">
     <StackLayout >
          <StackLayout.Padding>
@@ -15,11 +15,13 @@
         <Button Text="Remove" Command="{Binding RemoveCommand}" HorizontalOptions="CenterAndExpand" />
 
         <Label Text="{Binding DateTime, StringFormat='{0:T}'}" VerticalOptions="Center" HorizontalOptions="Center" />
+        <!--
         <ScrollView VerticalOptions="FillAndExpand">
             <ScrollView.Content>
                 <StackLayout></StackLayout>
             </ScrollView.Content>
         </ScrollView>
+        -->
 
         <Label Text="{Binding ButtonText}" HorizontalOptions="CenterAndExpand"/>
     </StackLayout>

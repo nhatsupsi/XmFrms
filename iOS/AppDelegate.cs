@@ -14,7 +14,7 @@ namespace ClockApp.iOS
         {
             global::Xamarin.Forms.Forms.Init();
 
-            LoadApplication(new App());
+            LoadApplication(new Core.Forms.App());
 
             return base.FinishedLaunching(app, options);
         }

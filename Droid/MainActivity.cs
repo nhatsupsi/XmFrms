@@ -22,7 +22,7 @@ namespace ClockApp.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
-            LoadApplication(new App());
+            LoadApplication(new ClockApp.Core.Forms.App());
         }
     }
 }
