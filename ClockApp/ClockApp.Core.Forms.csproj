@@ -50,6 +50,7 @@
     <Compile Include="ClockAppPage.xaml.cs">
       <DependentUpon>ClockAppPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\PlatformType.cs" />
     <Compile Include="HelloService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ClockView.xaml.cs">

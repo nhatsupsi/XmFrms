@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using ClockApp.Core.Forms.Data;
+using Xamarin.Forms;
 
 namespace ClockApp.Core.Forms
 {
@@ -11,11 +12,35 @@ namespace ClockApp.Core.Forms
             InitializeComponent();
 
             var tabbedPage = new TabbedPage();
-
+            tabbedPage.Title = "Clock TabbedPage";
             tabbedPage.Children.Add(new ClockAppPage() { Title = "Hello Xamarin" });
             tabbedPage.Children.Add(new Views.ClockView() { Title = "Clock" });
             tabbedPage.Children.Add(new Views.ClockSave() { Title = "Clock save" });
-            tabbedPage.Children.Add(new Views.ClockSaveBinding() { Title = "Time save" });
+            tabbedPage.Children.Add(new Views.ClockSaveBinding() { Title = "Button clicked" });
+            MainPage = tabbedPage;
+
+        }
+        public App(PlatformType type)
+        {
+            InitializeComponent();
+
+            var tabbedPage = new TabbedPage();
+            tabbedPage.Title = "Clock TabbedPage";
+
+            tabbedPage.Children.Add(new ClockAppPage(type) { Title = "Hello Xamarin" });
+            tabbedPage.Children.Add(new Views.ClockView() { Title = "Clock" });
+            tabbedPage.Children.Add(new Views.ClockSave() { Title = "Clock save" });
+            tabbedPage.Children.Add(new Views.ClockSaveBinding() { Title = "Button clicked"});
+            if (type == PlatformType.WPF)
+            {
+                for (int i = 0; i < tabbedPage.Children.Count; i++)
+                {
+                }
+                tabbedPage.HeightRequest = tabbedPage.Height/2.0;
+                tabbedPage.BackgroundColor =Color.White;
+                tabbedPage.BarBackgroundColor = Color.Black;
+
+            }
             MainPage = tabbedPage;
 
         }

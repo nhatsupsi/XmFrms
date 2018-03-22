@@ -4,13 +4,14 @@
              xmlns:local="clr-namespace:ClockApp.Core.Forms.ViewModel"
              x:Class="ClockApp.Core.Forms.Views.ClockView"
              Title="Clock Page">
-
-    <Label Text="{Binding DateTime, StringFormat='{0:T}'}"
-           FontSize="Large"
-           HorizontalOptions="Center"
-           VerticalOptions="Center">
-        <Label.BindingContext>
-            <local:ClockViewModel />
-        </Label.BindingContext>
-    </Label>
+    <ContentPage.Content>
+        <Label Text="{Binding DateTime, StringFormat='{0:T}'}"
+               FontSize="Large"
+               HorizontalOptions="Center"
+               VerticalOptions="Center">
+            <Label.BindingContext>
+                <local:ClockViewModel />
+            </Label.BindingContext>
+        </Label>
+    </ContentPage.Content>
 </ContentPage>

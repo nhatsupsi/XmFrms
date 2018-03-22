@@ -25,7 +25,7 @@ namespace ClockApp.UWP
         public MainPage()
         {
             this.InitializeComponent();
-            LoadApplication(new ClockApp.Core.Forms.App());
+            LoadApplication(new ClockApp.Core.Forms.App(ClockApp.Core.Forms.Data.PlatformType.UWP));
         }
     }
 }

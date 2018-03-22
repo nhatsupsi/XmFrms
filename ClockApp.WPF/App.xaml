@@ -18,13 +18,12 @@
             <SolidColorBrush x:Key="CommandBarTextColor" Color="White" />
 
             <!-- Default Title Bar Color -->
-            <SolidColorBrush x:Key="DefaultTitleBarBackgroundColor" Color="#3498db" />
-            <SolidColorBrush x:Key="DefaultTitleBarTextColor" Color="White" />
+            <SolidColorBrush x:Key="DefaultTitleBarBackgroundColor" Color="White" />
+            <SolidColorBrush x:Key="DefaultTitleBarTextColor" Color="Black" />
 
             <!-- Default Tabbed Bar Color -->
             <SolidColorBrush x:Key="DefaultTabbedBarBackgroundColor" Color="#3498db" />
             <SolidColorBrush x:Key="DefaultTabbedBarTextColor" Color="White" />
-
         </ResourceDictionary>
     </Application.Resources>
 </Application>

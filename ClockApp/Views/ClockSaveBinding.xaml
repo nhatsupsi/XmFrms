@@ -11,8 +11,8 @@
              Android="0"
              WinPhone="0"/>
          </StackLayout.Padding>
-        <Button Text="Add" Command="{Binding SaveCommand}" HorizontalOptions="CenterAndExpand" />
-        <Button Text="Remove" Command="{Binding RemoveCommand}" HorizontalOptions="CenterAndExpand" />
+        <Button Text="Button A" Command="{Binding AClickedCommand}" HorizontalOptions="CenterAndExpand" />
+        <Button Text="Button B" Command="{Binding BClickedCommand}" HorizontalOptions="CenterAndExpand" />
 
         <Label Text="{Binding DateTime, StringFormat='{0:T}'}" VerticalOptions="Center" HorizontalOptions="Center" />
         <!--

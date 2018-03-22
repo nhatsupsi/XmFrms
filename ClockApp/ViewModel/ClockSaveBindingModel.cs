@@ -8,9 +8,9 @@ namespace ClockApp.Core.Forms.ViewModel
     public class ClockSaveBindingModel : INotifyPropertyChanged
     {
         private DateTime dateTime;
+        public Command AClickedCommand { get; }
+        public Command BClickedCommand { get; }
         //private StackLayout loggerLayout;
-        public Command SaveCommand { get; }
-        public Command RemoveCommand { get; }
         //private List<View> stackLayoutSaveClockChildren;
         private String buttonText = "Not clicked";
         int numClicked = 0;
@@ -24,11 +24,11 @@ namespace ClockApp.Core.Forms.ViewModel
                 this.DateTime = DateTime.Now;
                 return true;
             });
-            SaveCommand = new Command(() => {
-                this.ButtonText = "button Add clicked";
+            AClickedCommand = new Command(() => {
+                this.ButtonText = "button A clicked";
             });
-            RemoveCommand = new Command(() => {
-                this.ButtonText = "button Remove clicked";
+            BClickedCommand = new Command(() => {
+                this.ButtonText = "button B clicked";
             });
         }
 
@@ -74,7 +74,8 @@ namespace ClockApp.Core.Forms.ViewModel
                 if(buttonText!= value)
                 {
                     numClicked++;
-                    buttonText = value +" " +numClicked + " at " + this.DateTime.ToString("h:mm:ss tt");
+                    buttonText = String.Format("{0} ({1}) at {2}", value, numClicked, this.DateTime.ToString("h:mm:ss tt"));
+                    //buttonText = value +" " +numClicked + " at " + this.DateTime.ToString("h:mm:ss tt");
                     if(PropertyChanged!=null)
                     {
                         PropertyChanged(this, new PropertyChangedEventArgs("ButtonText"));

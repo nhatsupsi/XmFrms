@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Xamarin.Forms.Platform.WPF;
-using System.Windows;
 
 namespace ClockApp.WPF
 {
@@ -26,12 +25,13 @@ namespace ClockApp.WPF
         {
             InitializeComponent();
             Xamarin.Forms.Forms.Init();
-            LoadApplication(new Core.Forms.App());
+            LoadApplication(new Core.Forms.App(ClockApp.Core.Forms.Data.PlatformType.WPF));
             //Frame rootFrame = this.Content as Frame;
             //rootFrame.
             //Frame frame = new Frame();
             //this.Content = frame;
-            this.WindowStyle = WindowStyle.ToolWindow;
+            this.WindowStyle = WindowStyle.SingleBorderWindow;
+            //this.Icon = "./Resources/Icons/clockIcon.png";
         }
     }
 }
