@@ -9,6 +9,7 @@ namespace ClockApp.Core.Forms.Data
     public enum PlatformType
     {
         iOS,
+        MacOS,
         Android,
         UWP,
         WPF

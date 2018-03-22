@@ -24,7 +24,7 @@ namespace ClockApp.Mac16
         public override void DidFinishLaunching(NSNotification notification)
         {
             Forms.Init();
-            LoadApplication(new Core.Forms.App());
+            LoadApplication(new Core.Forms.App(Core.Forms.Data.PlatformType.MacOS));
             base.DidFinishLaunching(notification);
         }
     }
