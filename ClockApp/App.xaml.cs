@@ -1,4 +1,5 @@
 ﻿using ClockApp.Core.Forms.Data;
+using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace ClockApp.Core.Forms
@@ -6,58 +7,79 @@ namespace ClockApp.Core.Forms
 
     public partial class App : Application
     {
+        TabbedPage tabbedPage;
+        //NavigationPage navigationPage;
+        ClockAppPage helloXamarinPage;
+        Views.ClockView clockPage;
+        Views.ClockSave clockSavePage;
+        Views.ClockSaveBinding clockSaveBindingPage;
 
         public App()
         {
             InitializeComponent();
+            tabbedPage = new TabbedPage();
 
-            var tabbedPage = new TabbedPage();
-            tabbedPage.Title = "Clock TabbedPage";
-            tabbedPage.Children.Add(new ClockAppPage() { Title = "Hello Xamarin" });
-            tabbedPage.Children.Add(new Views.ClockView() { Title = "Clock" });
-            tabbedPage.Children.Add(new Views.ClockSave() { Title = "Clock save" });
-            tabbedPage.Children.Add(new Views.ClockSaveBinding() { Title = "Button clicked" });
-            MainPage = tabbedPage;
+            helloXamarinPage = new ClockAppPage() { Title = "Hello Xamarin" };
+            clockPage = new Views.ClockView() { Title = "Clock" };
+            clockSavePage = new Views.ClockSave() { Title = "Clock save" };
+            clockSaveBindingPage = new Views.ClockSaveBinding() { Title = "Button clicked" };
+            initTabbedPage();
 
         }
         public App(PlatformType type)
         {
             InitializeComponent();
 
-            var tabbedPage = new TabbedPage();
-            tabbedPage.Title = "Clock TabbedPage";
+            tabbedPage = new TabbedPage();
+            //NavigationPage.SetHasNavigationBar(this, false);
 
-            tabbedPage.Children.Add(new ClockAppPage(type) { Title = "Hello Xamarin" });
-            tabbedPage.Children.Add(new Views.ClockView() { Title = "Clock" });
-            tabbedPage.Children.Add(new Views.ClockSave() { Title = "Clock save" });
-            tabbedPage.Children.Add(new Views.ClockSaveBinding() { Title = "Button clicked"});
+            helloXamarinPage = new ClockAppPage(type) { Title = "Hello Xamarin" };
+            clockPage = new Views.ClockView() { Title = "Clock" };
+            clockSavePage = new Views.ClockSave() { Title = "Clock save" };
+            clockSaveBindingPage = new Views.ClockSaveBinding() { Title = "Button clicked" };
+            initTabbedPage();
+
             if (type == PlatformType.WPF)
             {
+                tabbedPage.BarBackgroundColor = Color.Black;
+                /*
                 for (int i = 0; i < tabbedPage.Children.Count; i++)
                 {
                 }
                 tabbedPage.HeightRequest = tabbedPage.Height/2.0;
                 tabbedPage.BackgroundColor =Color.White;
-                tabbedPage.BarBackgroundColor = Color.Black;
-
+                */
             }
             MainPage = tabbedPage;
 
         }
+        private void initTabbedPage()
+        {
+            tabbedPage.Title = "Clock TabbedPage";
+            tabbedPage.Children.Add(helloXamarinPage);
+            tabbedPage.Children.Add(clockPage);
+            tabbedPage.Children.Add(clockSavePage);
+            tabbedPage.Children.Add(clockSaveBindingPage);
+            MainPage = tabbedPage;
 
+        }
         protected override void OnStart()
         {
             // Handle when your app starts
+            Debug.WriteLine("OnStart");
+            //helloXamarinPage.labelWelcomeAdd("OnStart");
         }
 
         protected override void OnSleep()
         {
             // Handle when your app sleeps
+            Debug.WriteLine("OnSleep");
         }
 
         protected override void OnResume()
         {
             // Handle when your app resumes
+            Debug.WriteLine("OnResume");
         }
     }
 }

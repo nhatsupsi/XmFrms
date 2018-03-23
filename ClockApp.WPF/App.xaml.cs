@@ -14,4 +14,5 @@ namespace ClockApp.WPF
     public partial class App : Application
     {
     }
+
 }
