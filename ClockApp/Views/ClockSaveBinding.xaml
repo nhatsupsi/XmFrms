@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:ClockApp.Core.Forms.ViewModel"
              x:Class="ClockApp.Core.Forms.Views.ClockSaveBinding"
              Title="Clock Page">
-    <StackLayout >
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
          <StackLayout.Padding>
          <OnPlatform x:TypeArguments="Thickness"
             iOS="0, 20, 0, 0"

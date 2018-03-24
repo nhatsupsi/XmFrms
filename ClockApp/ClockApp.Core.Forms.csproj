@@ -42,6 +42,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\PhoneCall.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -64,6 +68,10 @@
       <DependentUpon>ClockSaveBinding.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\ClockSaveBindingModel.cs" />
+    <Compile Include="Views\PhoneCall.xaml.cs">
+      <DependentUpon>PhoneCall.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\PhoneCallModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation">

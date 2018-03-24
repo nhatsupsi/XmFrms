@@ -13,6 +13,7 @@ namespace ClockApp.Core.Forms
         Views.ClockView clockPage;
         Views.ClockSave clockSavePage;
         Views.ClockSaveBinding clockSaveBindingPage;
+        Views.PhoneCall phoneCallPage;
 
         public App()
         {
@@ -23,6 +24,7 @@ namespace ClockApp.Core.Forms
             clockPage = new Views.ClockView() { Title = "Clock" };
             clockSavePage = new Views.ClockSave() { Title = "Clock save" };
             clockSaveBindingPage = new Views.ClockSaveBinding() { Title = "Button clicked" };
+            phoneCallPage = new Views.PhoneCall() { Title = "Phone call" };
             initTabbedPage();
 
         }
@@ -37,6 +39,7 @@ namespace ClockApp.Core.Forms
             clockPage = new Views.ClockView() { Title = "Clock" };
             clockSavePage = new Views.ClockSave() { Title = "Clock save" };
             clockSaveBindingPage = new Views.ClockSaveBinding() { Title = "Button clicked" };
+            phoneCallPage = new Views.PhoneCall(type) { Title = "Phone call" };
             initTabbedPage();
 
             if (type == PlatformType.WPF)
@@ -60,6 +63,7 @@ namespace ClockApp.Core.Forms
             tabbedPage.Children.Add(clockPage);
             tabbedPage.Children.Add(clockSavePage);
             tabbedPage.Children.Add(clockSaveBindingPage);
+            tabbedPage.Children.Add(phoneCallPage);
             MainPage = tabbedPage;
 
         }
