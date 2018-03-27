@@ -174,10 +174,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClockApp.Core\ClockApp.Core.csproj">
-      <Project>{a27bb825-1081-47f5-b3b8-ff502c8e3cda}</Project>
-      <Name>ClockApp.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ClockApp\ClockApp.Core.Forms.csproj">
       <Project>{a8da4421-8394-4fd9-a1b1-c6cc8afaf047}</Project>
       <Name>ClockApp.Core.Forms</Name>

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ClockApp.Core.Forms.Views.ClockSave">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="ClockApp.Core.Forms.Views.ClockSave">
+    
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
          <StackLayout.Padding>
          <OnPlatform x:TypeArguments="Thickness"
-            iOS="0, 20, 0, 0"
-             Android="0"
-             WinPhone="0"/>
+            iOS="20, 20, 20, 20"
+             Android="10"
+             WinPhone="15" Default="5"/>
          </StackLayout.Padding>
-        <Button Text="add" x:Name='addButton' HorizontalOptions="CenterAndExpand" Clicked="OnButtonClicked"></Button>
-        <Button Text="remove" x:Name='removeButton' HorizontalOptions="CenterAndExpand" Clicked="OnButtonClicked" IsEnabled="False"></Button>
+        <Button Text="add" x:Name='addButton' HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnButtonClicked"></Button>
+        <Button Text="remove" x:Name='removeButton' HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnButtonClicked" IsEnabled="False"></Button>
 
         <Label Text="Clock" x:Name='clockLabel' HorizontalOptions="Center" VerticalOptions="Center"></Label>
         <!--

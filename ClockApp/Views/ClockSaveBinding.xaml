@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:ClockApp.Core.Forms.ViewModel"
              x:Class="ClockApp.Core.Forms.Views.ClockSaveBinding"
              Title="Clock Page">
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-         <StackLayout.Padding>
-         <OnPlatform x:TypeArguments="Thickness"
-            iOS="0, 20, 0, 0"
-             Android="0"
-             WinPhone="0"/>
-         </StackLayout.Padding>
-        <Button Text="Button A" Command="{Binding AClickedCommand}" HorizontalOptions="CenterAndExpand" />
-        <Button Text="Button B" Command="{Binding BClickedCommand}" HorizontalOptions="CenterAndExpand" />
+        <StackLayout.Padding>
+            <OnPlatform x:TypeArguments="Thickness"
+            iOS="20, 20, 20, 20"
+             Android="10"
+             WinPhone="15" Default="5"/>
+        </StackLayout.Padding>
+        <Button Text="Button A" Command="{Binding AClickedCommand}" VerticalOptions="Center" HorizontalOptions="Center"/>
+        <Button Text="Button B" Command="{Binding BClickedCommand}" VerticalOptions="Center" HorizontalOptions="Center"/>
 
         <Label Text="{Binding DateTime, StringFormat='{0:T}'}" VerticalOptions="Center" HorizontalOptions="Center" />
         <!--
@@ -23,6 +22,6 @@
         </ScrollView>
         -->
 
-        <Label Text="{Binding ButtonText}" HorizontalOptions="CenterAndExpand"/>
+        <Label Text="{Binding ButtonText}" VerticalOptions="Center" HorizontalOptions="Center"/>
     </StackLayout>
 </ContentPage>
