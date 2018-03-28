@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace ClockApp.Core.Forms.ViewModel
@@ -10,7 +11,7 @@ namespace ClockApp.Core.Forms.ViewModel
 
         public Command defaultCallCommand;
         private Data.PlatformType platformType;
-        public string defaultCallNumber = "0763213311";
+        public string defaultCallNumber = "0761111111";
         public string inputCallNumber = "";
 
         public PhoneCallModel()
@@ -52,14 +53,7 @@ namespace ClockApp.Core.Forms.ViewModel
 
         public Command DefaultCallCommand
         {
-            get
-            {
-                return new Command(() => {
-
-                    Device.OpenUri(new Uri(("tel:" + DefaultCallNumber)));
-                    //makeCall(DefaultCallNumber);
-                });
-            }
+            get { return new Command(() => { makeCall(DefaultCallNumber); }); }
         }
         public String DefaultCallNumber
         {
@@ -78,20 +72,18 @@ namespace ClockApp.Core.Forms.ViewModel
 
         private void makeCall(String number)
         {
-            if (platformType == Data.PlatformType.MacOS)
+            Debug.WriteLine("try to make a call from {0}", Device.RuntimePlatform);
+            switch (platformType)
             {
-                Device.OpenUri(new Uri(("tel:" + number)));
-            }
-            else if(platformType == Data.PlatformType.iOS || platformType == Data.PlatformType.Android)
-            {
-                // DependencyService
-                // https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/dependency-service/#Overview
-                // ios 
-                // https://developer.xamarin.com/recipes/ios/shared_resources/phone/dial-phone-uri/
-            }
-            else
-            {
-                Device.OpenUri(new Uri(("tel:" + number)));
+                case Data.PlatformType.MacOS:
+                case Data.PlatformType.iOS:
+                case Data.PlatformType.Android:
+                case Data.PlatformType.UWP:
+                    Device.OpenUri(new Uri(("tel:" + number)));
+                    break;
+                case Data.PlatformType.WPF:
+                    Device.OpenUri(new Uri(("tel:" + number)));
+                    break;
             }
         }
     }
