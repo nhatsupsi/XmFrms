@@ -9,7 +9,6 @@ namespace ClockApp.Core.Forms.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Command defaultCallCommand;
         private Data.PlatformType platformType;
         public string defaultCallNumber = "0761111111";
         public string inputCallNumber = "";

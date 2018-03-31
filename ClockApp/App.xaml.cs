@@ -12,6 +12,7 @@ namespace ClockApp.Core.Forms
         Views.ClockSave clockSavePage;
         //Views.ClockSaveBinding clockSaveBindingPage;
         Views.PhoneCall phoneCallPage;
+        Views.PasswordSave passwordSave;
 
         public App()
         {
@@ -23,25 +24,13 @@ namespace ClockApp.Core.Forms
             clockSavePage = new Views.ClockSave() { Title = "Clock save" };
             //clockSaveBindingPage = new Views.ClockSaveBinding() { Title = "Button clicked" };
             phoneCallPage = new Views.PhoneCall() { Title = "Phone call" };
+            passwordSave = new Views.PasswordSave() { Title = "Password save" };
             initTabbedPage();
 
         }
         public App(PlatformType type)
         {
             InitializeComponent();
-
-            /*
-            Menu tblMenu = new Menu();
-            Menu tblMenuS = new Menu();
-            MenuItem a = new MenuItem();
-            /*
-            a.Activated += (sender, e) => {
-                showPopup();
-            };
-            //menu.AddItem(address);
-            tblMenu.Add(tblMenuS);
-            SetMenu(a, tblMenu);
-            */
 
             tabbedPage = new TabbedPage();
 
@@ -50,6 +39,7 @@ namespace ClockApp.Core.Forms
             clockSavePage = new Views.ClockSave() { Title = "Clock save" };
             //clockSaveBindingPage = new Views.ClockSaveBinding() { Title = "Button clicked" };
             phoneCallPage = new Views.PhoneCall(type) { Title = "Phone call" };
+            passwordSave = new Views.PasswordSave() { Title = "Password save" };
             initTabbedPage();
 
             if (type == PlatformType.WPF)
@@ -67,6 +57,7 @@ namespace ClockApp.Core.Forms
             tabbedPage.Children.Add(clockSavePage);
             //tabbedPage.Children.Add(clockSaveBindingPage);
             tabbedPage.Children.Add(phoneCallPage);
+            tabbedPage.Children.Add(passwordSave);
             MainPage = tabbedPage;
         }
         protected override void OnStart()

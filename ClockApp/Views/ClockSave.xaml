@@ -13,13 +13,6 @@
         <Button Text="remove" x:Name='removeButton' HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnButtonClicked" IsEnabled="False"></Button>
 
         <Label Text="Clock" x:Name='clockLabel' HorizontalOptions="Center" VerticalOptions="Center"></Label>
-        <!--
-        <ScrollView VerticalOptions="FillAndExpand">
-            <ScrollView.Content>
-                <StackLayout x:Name='loggerLayout'></StackLayout>
-            </ScrollView.Content>
-        </ScrollView>
-        -->
         <StackLayout x:Name='loggerLayout'></StackLayout>
     </StackLayout>
 </ContentPage>
