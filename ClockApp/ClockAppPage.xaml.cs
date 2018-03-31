@@ -23,6 +23,7 @@ namespace ClockApp.Core.Forms
         protected override void OnAppearing()
         {
             Debug.WriteLine("OnAppearing");
+            Button a = new Button();
         }
         protected override void OnDisappearing()
         {

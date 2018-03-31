@@ -29,6 +29,8 @@ namespace ClockApp.Core.Forms.ViewModel
                 return new Command(() => {
                     if (InputCallNumber != null && !(InputCallNumber.Equals("")) )
                         makeCall(InputCallNumber);
+                    else
+                        Device.BeginInvokeOnMainThread(async () => { await Application.Current.MainPage.DisplayAlert("Alert", "Input number is empty", "Ok"); });
                 });
             }
         }

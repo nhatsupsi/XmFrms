@@ -4,11 +4,9 @@ using Xamarin.Forms;
 
 namespace ClockApp.Core.Forms
 {
-
     public partial class App : Application
     {
         TabbedPage tabbedPage;
-        //NavigationPage navigationPage;
         ClockAppPage helloXamarinPage;
         Views.ClockView clockPage;
         Views.ClockSave clockSavePage;
@@ -32,8 +30,20 @@ namespace ClockApp.Core.Forms
         {
             InitializeComponent();
 
+            /*
+            Menu tblMenu = new Menu();
+            Menu tblMenuS = new Menu();
+            MenuItem a = new MenuItem();
+            /*
+            a.Activated += (sender, e) => {
+                showPopup();
+            };
+            //menu.AddItem(address);
+            tblMenu.Add(tblMenuS);
+            SetMenu(a, tblMenu);
+            */
+
             tabbedPage = new TabbedPage();
-            //NavigationPage.SetHasNavigationBar(this, false);
 
             helloXamarinPage = new ClockAppPage(type) { Title = "Hello Xamarin" };
             clockPage = new Views.ClockView() { Title = "Clock" };
@@ -45,13 +55,6 @@ namespace ClockApp.Core.Forms
             if (type == PlatformType.WPF)
             {
                 tabbedPage.BarBackgroundColor = Color.Black;
-                /*
-                for (int i = 0; i < tabbedPage.Children.Count; i++)
-                {
-                }
-                tabbedPage.HeightRequest = tabbedPage.Height/2.0;
-                tabbedPage.BackgroundColor =Color.White;
-                */
             }
             MainPage = tabbedPage;
 
@@ -65,13 +68,11 @@ namespace ClockApp.Core.Forms
             //tabbedPage.Children.Add(clockSaveBindingPage);
             tabbedPage.Children.Add(phoneCallPage);
             MainPage = tabbedPage;
-
         }
         protected override void OnStart()
         {
             // Handle when your app starts
             Debug.WriteLine("OnStart");
-            //helloXamarinPage.labelWelcomeAdd("OnStart");
         }
 
         protected override void OnSleep()
