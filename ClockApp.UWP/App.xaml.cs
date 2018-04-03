@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -50,7 +51,19 @@ namespace ClockApp.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                Xamarin.Forms.Forms.Init(e);
+                // You'll need to add `using System.Reflection;`
+                List<Assembly> assembliesToInclude = new List<Assembly>();
+
+                // Now, add in all the assemblies your app uses
+                assembliesToInclude.Add(typeof(ClockApp.UWP.ClipBoardImplementation).GetTypeInfo().Assembly);
+
+                // Also do this for all your other 3rd party libraries
+                // replaces Xamarin.Forms.Forms.Init(e);
+                //Xamarin.Forms.Forms.Init(e);
+                Xamarin.Forms.Forms.Init(e, assembliesToInclude);
+
+                //Use the DependencyService.Register<T>() method to manually register dependency service classes
+                Xamarin.Forms.DependencyService.Register<ClockApp.UWP.ClipBoardImplementation>();
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
