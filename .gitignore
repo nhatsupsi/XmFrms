@@ -3,3 +3,24 @@
 ################################################################################
 
 /.vs/ClockApp/v15/Server/sqlite3
+/ClockApp.Mac16/obj/Debug/DesignTimeResolveAssemblyReferences.cache
+/ClockApp.Mac16/obj/Debug
+/ClockApp/obj/Release/ClockApp.Views.MvvmLightPage.xaml.g.cs
+/ClockApp/obj/Release/ClockApp.Views.MainPage.xaml.g.cs
+/ClockApp/obj/Release/ClockApp.Views.ClockView.xaml.g.cs
+/ClockApp/obj/Release/ClockApp.Views.ClockSaveBinding.xaml.g.cs
+/ClockApp/obj/Release/ClockApp.Views.ClockSave.xaml.g.cs
+/ClockApp/obj/Release/ClockApp.ClockAppPage.xaml.g.cs
+/ClockApp/obj/Release/ClockApp.App.xaml.g.cs
+/ClockApp/obj/Release
+/ClockApp/obj/Debug/ClockApp.Views.MvvmLightPage.xaml.g.cs
+/ClockApp/obj/Debug/ClockApp.Views.MainPage.xaml.g.cs
+/ClockApp/obj/Debug/ClockApp.Views.ClockView.xaml.g.cs
+/ClockApp/obj/Debug/ClockApp.Views.ClockSaveBinding.xaml.g.cs
+/ClockApp/obj/Debug/ClockApp.Views.ClockSave.xaml.g.cs
+/ClockApp/obj/Debug/ClockApp.ClockAppPage.xaml.g.cs
+/ClockApp/obj/Debug/ClockApp.App.xaml.g.cs
+/ClockApp/obj/Debug
+/ClockApp/obj
+/.vs/VSWorkspaceState.json
+/.vs
