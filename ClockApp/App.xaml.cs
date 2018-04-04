@@ -14,21 +14,25 @@ namespace ClockApp.Core.Forms
         Views.PhoneCall phoneCallPage;
         Views.PasswordSave passwordSave;
 
-        public App(PlatformType type)
+        PlatformType platformType;
+
+        public App(PlatformType platformType)
         {
             InitializeComponent();
 
+            this.platformType = platformType;
+
             tabbedPage = new TabbedPage();
 
-            helloXamarinPage = new ClockAppPage(type) { Title = "Hello Xamarin" };
+            helloXamarinPage = new ClockAppPage(platformType) { Title = "Hello Xamarin" };
             clockPage = new Views.ClockView() { Title = "Clock" };
             clockSavePage = new Views.ClockSave() { Title = "Clock save" };
             //clockSaveBindingPage = new Views.ClockSaveBinding() { Title = "Button clicked" };
-            phoneCallPage = new Views.PhoneCall(type) { Title = "Phone call" };
-            passwordSave = new Views.PasswordSave(type) { Title = "Password save" };
+            phoneCallPage = new Views.PhoneCall(platformType) { Title = "Phone call" };
+            passwordSave = new Views.PasswordSave(platformType) { Title = "Password save" };
             initTabbedPage();
 
-            if (type == PlatformType.WPF)
+            if (platformType == PlatformType.WPF)
             {
                 tabbedPage.BarBackgroundColor = Color.Black;
             }
@@ -50,6 +54,8 @@ namespace ClockApp.Core.Forms
         {
             // Handle when your app starts
             Debug.WriteLine("OnStart");
+            if(platformType==Data.PlatformType.MacOS || platformType == Data.PlatformType.UWP)
+                DependencyService.Get<Services.IFileSystem>().WatchFolder();
         }
 
         protected override void OnSleep()
