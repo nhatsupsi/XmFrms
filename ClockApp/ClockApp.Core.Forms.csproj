@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="ViewModel\PasswordSaveModel.cs" />
     <Compile Include="Services\IClipboard.cs" />
+    <Compile Include="Services\IShowStatusBoard.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation">

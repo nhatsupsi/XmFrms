@@ -27,18 +27,6 @@ namespace ClockApp.Core.Forms.ViewModel
                 }
             }
         }
-
-
-        public Command SaveCommand
-        {
-            get
-            {
-                return new Command(() => {
-                    //Device.BeginInvokeOnMainThread(async () => { await Application.Current.})
-                    Device.BeginInvokeOnMainThread(async () => { await Application.Current.MainPage.DisplayAlert("Message", "Copy: "+ passwordText, "Ok"); });
-                });
-            }
-        }
         public Command CopyCommand
         {
             get

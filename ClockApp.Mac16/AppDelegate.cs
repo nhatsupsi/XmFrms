@@ -25,31 +25,29 @@ namespace ClockApp.Mac16
             NSStatusBar statusBar = NSStatusBar.SystemStatusBar;
 
             var item = statusBar.CreateStatusItem(NSStatusItemLength.Variable);
-            item.Title = "Popup";
+            item.Image = NSImage.ImageNamed("Icon-29.png");
             item.HighlightMode = false;
             item.Menu = new NSMenu("Popup");
 
             var popupDialog = new NSMenuItem("Show");
             popupDialog.Activated += (sender, e) => {
-                showPopup();
+                var alert = new NSAlert()
+                {
+                    AlertStyle = NSAlertStyle.Informational,
+                    InformativeText = "Popup showed ...",
+                    MessageText = "PopUP"
+                };
+                alert.RunModal();
+                return;
             };
             item.Menu.AddItem(popupDialog);
             //-----------------------------------------------//
 
+
+
             Forms.Init();
             LoadApplication(new Core.Forms.App(Core.Forms.Data.PlatformType.MacOS));
             base.DidFinishLaunching(notification);
-        }
-        void showPopup()
-        {
-            var alert = new NSAlert()
-            {
-                AlertStyle = NSAlertStyle.Informational,
-                InformativeText = "Popup showed ...",
-                MessageText = "PopUP"
-            };
-            alert.RunModal();
-            return;
         }
     }
 }

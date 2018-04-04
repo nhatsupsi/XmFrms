@@ -87,8 +87,9 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_512x512.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
     <Folder Include="Services\" />
+    <Folder Include="Assets.xcassets\StatusBarImageIcon.imageset\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -104,6 +105,7 @@
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\ClipBoardImplementation.cs" />
+    <Compile Include="Services\ShowStatusBoardImplementation.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
@@ -113,6 +115,13 @@
       <Project>{A8DA4421-8394-4FD9-A1B1-C6CC8AFAF047}</Project>
       <Name>ClockApp.Core.Forms</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_128x128.png" />
+    <BundleResource Include="Resources\icon_16x16.png" />
+    <BundleResource Include="Resources\icon_32x32.png" />
+    <BundleResource Include="Resources\Icon-20.png" />
+    <BundleResource Include="Resources\Icon-29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.5.0.280555\build\netstandard1.0\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.5.0.280555\build\netstandard1.0\Xamarin.Forms.targets')" />

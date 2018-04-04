@@ -14,20 +14,6 @@ namespace ClockApp.Core.Forms
         Views.PhoneCall phoneCallPage;
         Views.PasswordSave passwordSave;
 
-        public App()
-        {
-            InitializeComponent();
-            tabbedPage = new TabbedPage();
-
-            helloXamarinPage = new ClockAppPage() { Title = "Hello Xamarin" };
-            clockPage = new Views.ClockView() { Title = "Clock" };
-            clockSavePage = new Views.ClockSave() { Title = "Clock save" };
-            //clockSaveBindingPage = new Views.ClockSaveBinding() { Title = "Button clicked" };
-            phoneCallPage = new Views.PhoneCall() { Title = "Phone call" };
-            passwordSave = new Views.PasswordSave() { Title = "Password save" };
-            initTabbedPage();
-
-        }
         public App(PlatformType type)
         {
             InitializeComponent();
@@ -39,7 +25,7 @@ namespace ClockApp.Core.Forms
             clockSavePage = new Views.ClockSave() { Title = "Clock save" };
             //clockSaveBindingPage = new Views.ClockSaveBinding() { Title = "Button clicked" };
             phoneCallPage = new Views.PhoneCall(type) { Title = "Phone call" };
-            passwordSave = new Views.PasswordSave() { Title = "Password save" };
+            passwordSave = new Views.PasswordSave(type) { Title = "Password save" };
             initTabbedPage();
 
             if (type == PlatformType.WPF)
