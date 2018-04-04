@@ -56,6 +56,7 @@ namespace ClockApp.UWP
 
                 // Now, add in all the assemblies your app uses
                 assembliesToInclude.Add(typeof(ClockApp.UWP.ClipBoardImplementation).GetTypeInfo().Assembly);
+                assembliesToInclude.Add(typeof(ClockApp.UWP.FileSystemImplementation).GetTypeInfo().Assembly);
 
                 // Also do this for all your other 3rd party libraries
                 // replaces Xamarin.Forms.Forms.Init(e);
@@ -64,6 +65,7 @@ namespace ClockApp.UWP
 
                 //Use the DependencyService.Register<T>() method to manually register dependency service classes
                 Xamarin.Forms.DependencyService.Register<ClockApp.UWP.ClipBoardImplementation>();
+                Xamarin.Forms.DependencyService.Register<ClockApp.UWP.FileSystemImplementation>();
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {

@@ -1,4 +1,5 @@
 ﻿using ClockApp.Core.Forms.Data;
+using ClockApp.Core.Forms.Services;
 using System.Diagnostics;
 using Xamarin.Forms;
 
@@ -55,7 +56,7 @@ namespace ClockApp.Core.Forms
             // Handle when your app starts
             Debug.WriteLine("OnStart");
             if(platformType==Data.PlatformType.MacOS || platformType == Data.PlatformType.UWP)
-                DependencyService.Get<Services.IFileSystem>().WatchFolder();
+                DependencyService.Get<IFileSystem>().WatchFolder();
         }
 
         protected override void OnSleep()
