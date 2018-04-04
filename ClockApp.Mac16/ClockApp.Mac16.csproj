@@ -106,10 +106,19 @@
     </Compile>
     <Compile Include="Services\ClipBoardImplementation.cs" />
     <Compile Include="Services\ShowStatusBoardImplementation.cs" />
+    <Compile Include="MainWindowController.cs" />
+    <Compile Include="MainWindowController.designer.cs">
+      <DependentUpon>MainWindowController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindowControllerController.cs" />
+    <Compile Include="MainWindowControllerController.designer.cs">
+      <DependentUpon>MainWindowControllerController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Services\FileSystemImplementation.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="MainWindowController.xib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClockApp\ClockApp.Core.Forms.csproj">
