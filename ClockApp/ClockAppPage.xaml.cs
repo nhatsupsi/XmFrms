@@ -23,11 +23,15 @@ namespace ClockApp.Core.Forms
         protected override void OnAppearing()
         {
             Debug.WriteLine("OnAppearing");
-            Button a = new Button();
+            //MessagingCenter.Subscribe<Services.IFileSystem>(this, "Hi", (sender) => {
+            MessagingCenter.Subscribe<App, string>((App)Application.Current, "AppDataChanged", (sender, args) => {
+                Debug.WriteLine("AppDataChanged");
+            });
         }
         protected override void OnDisappearing()
         {
             Debug.WriteLine("OnDisappearing");
+            MessagingCenter.Unsubscribe<App, string>(this, "AppDataChanged");
         }
     }
 }
