@@ -19,6 +19,7 @@ namespace ClockApp.WPF
 
         public void OnCopy(string text)
         {
+            System.Diagnostics.Debug.WriteLine("data copy I am here");
             Clipboard.SetDataObject(text);
         }
     }

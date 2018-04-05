@@ -55,8 +55,14 @@ namespace ClockApp.Core.Forms
         {
             // Handle when your app starts
             Debug.WriteLine("OnStart");
-            if(platformType==Data.PlatformType.MacOS || platformType == Data.PlatformType.UWP)
-                DependencyService.Get<IFileSystem>().WatchFolder();
+            switch (platformType)
+            {
+                case Data.PlatformType.MacOS:
+                case Data.PlatformType.UWP:
+                case Data.PlatformType.WPF:
+                    DependencyService.Get<IFileSystem>().WatchFolder();
+                    break;
+            }
         }
 
         protected override void OnSleep()
