@@ -10,27 +10,38 @@ namespace ClockApp.Mac16
 {
     public class FileSystemImplementation : IFileSystem
     {
+        static int numDataChanged = 0;
+        FSEventStream eventStream;
         public FileSystemImplementation()
         {
         }
+
+        public string GetPath()
+        {
+            return eventStream.PathsBeingWatched.GetValue(0).ToString();
+        }
+
         public void WatchFolder()
         {
             WatchFolder("/Users/nguyen/Desktop/untitledfolder");
         }
         public void WatchFolder(String path)
         {
-            FSEventStream eventStream;
             TimeSpan eventLatency = TimeSpan.FromSeconds(1);
+            //https://developer.apple.com/documentation/coreservices/file_system_events/1455376-fseventstreamcreateflags
             eventStream = new FSEventStream(new[] { path }, eventLatency, FSEventStreamCreateFlags.FileEvents);
-            eventStream.Events += OnFSEventStreamEvents;
+            eventStream.Events += OnAppDataChanged;
             eventStream.ScheduleWithRunLoop(NSRunLoop.Current);
             eventStream.Start();
         }
-        void OnFSEventStreamEvents(object sender, FSEventStreamEventsArgs e)
+        void OnAppDataChanged(object sender, FSEventStreamEventsArgs e)
         {
             foreach (var evnt in e.Events)
             {
-                System.Diagnostics.Debug.WriteLine(evnt);
+                numDataChanged++;
+                String message = numDataChanged + " " + evnt;
+                Xamarin.Forms.MessagingCenter.Send<ClockApp.Core.Forms.App, string>((ClockApp.Core.Forms.App)Xamarin.Forms.Application.Current, "AppDataChanged", message);
+                //System.Diagnostics.Debug.WriteLine(evnt);
             }
         }
     }
