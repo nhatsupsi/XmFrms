@@ -5,5 +5,6 @@ namespace ClockApp.Core.Forms.Services
     {
         void WatchFolder();
         void WatchFolder(String path);
+        String GetPath();
     }
 }

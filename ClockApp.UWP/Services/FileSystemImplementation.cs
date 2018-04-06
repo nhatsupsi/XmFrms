@@ -32,16 +32,17 @@ namespace ClockApp.UWP
             query.ContentsChanged += OnAppDataChanged;
             var files = await query.GetFilesAsync();
         }
-
-        public System.Collections.ObjectModel.ObservableCollection<string> Greetings { get; set; }
+        
         private void OnAppDataChanged(Windows.Storage.Search.IStorageQueryResultBase sender, object args)
         {
             numDataChanged++;
-            //System.Diagnostics.Debug.WriteLine("{0} Data changed", numDataChanged);
-            //System.Diagnostics.Debug.WriteLine(sender);
             String message = numDataChanged + " Data changed";
-            //Xamarin.Forms.MessagingCenter.Send<FileSystemImplementation>(this, "Hi");
             Xamarin.Forms.MessagingCenter.Send<ClockApp.Core.Forms.App, string>((ClockApp.Core.Forms.App)Xamarin.Forms.Application.Current, "AppDataChanged", message);
+        }
+
+        public string GetPath()
+        {
+            return storageFolder.Path;
         }
     }
 }

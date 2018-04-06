@@ -14,6 +14,7 @@ namespace ClockApp.Core.Forms
         //Views.ClockSaveBinding clockSaveBindingPage;
         Views.PhoneCall phoneCallPage;
         Views.PasswordSave passwordSave;
+        Views.FileSystemTracker fileSystemTracker;
 
         PlatformType platformType;
 
@@ -23,14 +24,6 @@ namespace ClockApp.Core.Forms
 
             this.platformType = platformType;
 
-            tabbedPage = new TabbedPage();
-
-            helloXamarinPage = new ClockAppPage(platformType) { Title = "Hello Xamarin" };
-            clockPage = new Views.ClockView() { Title = "Clock" };
-            clockSavePage = new Views.ClockSave() { Title = "Clock save" };
-            //clockSaveBindingPage = new Views.ClockSaveBinding() { Title = "Button clicked" };
-            phoneCallPage = new Views.PhoneCall(platformType) { Title = "Phone call" };
-            passwordSave = new Views.PasswordSave(platformType) { Title = "Password save" };
             initTabbedPage();
 
             if (platformType == PlatformType.WPF)
@@ -42,27 +35,31 @@ namespace ClockApp.Core.Forms
         }
         private void initTabbedPage()
         {
+            tabbedPage = new TabbedPage();
+
+            helloXamarinPage = new ClockAppPage(platformType) { Title = "Hello Xamarin" };
+            clockPage = new Views.ClockView() { Title = "Clock" };
+            clockSavePage = new Views.ClockSave() { Title = "Clock save" };
+            //clockSaveBindingPage = new Views.ClockSaveBinding() { Title = "Button clicked" };
+            phoneCallPage = new Views.PhoneCall(platformType) { Title = "Phone call" };
+            passwordSave = new Views.PasswordSave(platformType) { Title = "Password save" };
+            fileSystemTracker = new Views.FileSystemTracker(platformType) { Title = "File System" };
+            
             tabbedPage.Title = "Clock TabbedPage";
+
             tabbedPage.Children.Add(helloXamarinPage);
             tabbedPage.Children.Add(clockPage);
             tabbedPage.Children.Add(clockSavePage);
             //tabbedPage.Children.Add(clockSaveBindingPage);
             tabbedPage.Children.Add(phoneCallPage);
             tabbedPage.Children.Add(passwordSave);
+            tabbedPage.Children.Add(fileSystemTracker);
             MainPage = tabbedPage;
         }
         protected override void OnStart()
         {
             // Handle when your app starts
             Debug.WriteLine("OnStart");
-            switch (platformType)
-            {
-                case Data.PlatformType.MacOS:
-                case Data.PlatformType.UWP:
-                case Data.PlatformType.WPF:
-                    DependencyService.Get<IFileSystem>().WatchFolder();
-                    break;
-            }
         }
 
         protected override void OnSleep()
