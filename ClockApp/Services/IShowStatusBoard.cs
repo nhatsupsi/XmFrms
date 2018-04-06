@@ -1,8 +1,10 @@
 ﻿using System;
+using Xamarin.Forms;
+
 namespace ClockApp.Core.Forms.Services
 {
     public interface IShowStatusBoard
     {
-        void Show();
+        void Create(ContentPage[] contentPages);
     }
 }

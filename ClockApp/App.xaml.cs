@@ -16,6 +16,8 @@ namespace ClockApp.Core.Forms
         Views.PasswordSave passwordSave;
         Views.FileSystemTracker fileSystemTracker;
 
+        public static ContentPage[] tabbedPageContent;
+
         PlatformType platformType;
 
         public App(PlatformType platformType)
@@ -37,6 +39,9 @@ namespace ClockApp.Core.Forms
         {
             tabbedPage = new TabbedPage();
 
+            tabbedPage.Title = "Clock TabbedPage";
+
+
             helloXamarinPage = new ClockAppPage(platformType) { Title = "Hello Xamarin" };
             clockPage = new Views.ClockView() { Title = "Clock" };
             clockSavePage = new Views.ClockSave() { Title = "Clock save" };
@@ -44,22 +49,31 @@ namespace ClockApp.Core.Forms
             phoneCallPage = new Views.PhoneCall(platformType) { Title = "Phone call" };
             passwordSave = new Views.PasswordSave(platformType) { Title = "Password save" };
             fileSystemTracker = new Views.FileSystemTracker(platformType) { Title = "File System" };
-            
-            tabbedPage.Title = "Clock TabbedPage";
 
-            tabbedPage.Children.Add(helloXamarinPage);
-            tabbedPage.Children.Add(clockPage);
-            tabbedPage.Children.Add(clockSavePage);
-            //tabbedPage.Children.Add(clockSaveBindingPage);
-            tabbedPage.Children.Add(phoneCallPage);
-            tabbedPage.Children.Add(passwordSave);
-            tabbedPage.Children.Add(fileSystemTracker);
+
+            tabbedPageContent = new ContentPage[] {helloXamarinPage, clockPage, clockSavePage, 
+                phoneCallPage, passwordSave, fileSystemTracker};
+
+            foreach(ContentPage page in tabbedPageContent)
+            {
+                tabbedPage.Children.Add(page);
+            }
+
             MainPage = tabbedPage;
         }
         protected override void OnStart()
         {
             // Handle when your app starts
             Debug.WriteLine("OnStart");
+
+            // Create Statusbar for MAC and take action when its item is clicked
+            if (platformType == Data.PlatformType.MacOS)
+            {
+                DependencyService.Get<IShowStatusBoard>().Create(tabbedPageContent);
+                MessagingCenter.Subscribe<App, int>((App)Application.Current, "StatusBarItemChanged", (sender, pageIndex) => {
+                    tabbedPage.CurrentPage = tabbedPage.Children[pageIndex];
+                });
+            }
         }
 
         protected override void OnSleep()

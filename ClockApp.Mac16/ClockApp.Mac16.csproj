@@ -90,6 +90,7 @@
     <Folder Include="Services\" />
     <Folder Include="Assets.xcassets\StatusBarImageIcon.imageset\" />
     <Folder Include="Resources\" />
+    <Folder Include="Components\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -115,6 +116,7 @@
       <DependentUpon>MainWindowControllerController.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\FileSystemImplementation.cs" />
+    <Compile Include="Components\SystemStatusBarComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />

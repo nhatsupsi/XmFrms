@@ -3,12 +3,6 @@
              x:Class="ClockApp.Core.Forms.Views.ClockSave">
     
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-         <StackLayout.Padding>
-         <OnPlatform x:TypeArguments="Thickness"
-            iOS="20, 20, 20, 20"
-             Android="10"
-             WinPhone="15" Default="5"/>
-         </StackLayout.Padding>
         <Button Text="add" x:Name='addButton' HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnButtonClicked"></Button>
         <Button Text="remove" x:Name='removeButton' HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnButtonClicked" IsEnabled="False"></Button>
 
