@@ -2,7 +2,6 @@
 using ClockApp.Core.Forms.Services;
 using System.Diagnostics;
 using Xamarin.Forms;
-
 namespace ClockApp.Core.Forms
 {
     public partial class App : Application
@@ -67,7 +66,7 @@ namespace ClockApp.Core.Forms
             Debug.WriteLine("OnStart");
 
             // Create Statusbar for MAC and take action when its item is clicked
-            if (platformType == Data.PlatformType.MacOS)
+            if (platformType == Data.PlatformType.MacOS || platformType == Data.PlatformType.WPF)
             {
                 DependencyService.Get<IShowStatusBoard>().Create(tabbedPageContent);
                 MessagingCenter.Subscribe<App, int>((App)Application.Current, "StatusBarItemChanged", (sender, pageIndex) => {

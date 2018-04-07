@@ -30,8 +30,26 @@ namespace ClockApp.WPF
             //rootFrame.
             //Frame frame = new Frame();
             //this.Content = frame;
-            this.WindowStyle = WindowStyle.SingleBorderWindow;
             //this.Icon = "./Resources/Icons/clockIcon.png";
+            this.WindowStyle = WindowStyle.SingleBorderWindow;
+
+            System.Windows.Forms.NotifyIcon ni = new System.Windows.Forms.NotifyIcon();
+            System.IO.Stream iconStream = App.GetResourceStream(new Uri("pack://application:,,,./clockIcon2.ico")).Stream;
+            ni.Icon = new System.Drawing.Icon(iconStream);
+            ni.Visible = true;
+            /*
+            ni.DoubleClick +=
+                delegate (object sender, EventArgs args)
+                {
+                    this.Show();
+                    this.WindowState = WindowState.Normal;
+                };
+            */
+            System.Windows.Forms.MenuItem menuItem1 = new System.Windows.Forms.MenuItem("a");
+            System.Windows.Forms.ContextMenu contextMenu1 = new System.Windows.Forms.ContextMenu();
+            contextMenu1.MenuItems.AddRange(
+                        new System.Windows.Forms.MenuItem[] { menuItem1 });
+            ni.ContextMenu = contextMenu1;
         }
     }
 }

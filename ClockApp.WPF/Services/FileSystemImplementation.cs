@@ -37,7 +37,6 @@ namespace ClockApp.WPF
         {
             numDataChanged++;
             String message = numDataChanged + "(WPF) File: " + e.FullPath + " " + e.ChangeType;
-            //System.Windows.MessageBox.Show("(WPF) File: " + e.FullPath + " " + e.ChangeType);
             Xamarin.Forms.MessagingCenter.Send<ClockApp.Core.Forms.App, string>((ClockApp.Core.Forms.App)Xamarin.Forms.Application.Current, "AppDataChanged", message);
         }
         private void OnAppDataRenamed(object source, RenamedEventArgs e)

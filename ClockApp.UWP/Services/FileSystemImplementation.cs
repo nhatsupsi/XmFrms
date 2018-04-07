@@ -12,8 +12,6 @@ namespace ClockApp.UWP
         
         public void WatchFolder()
         {
-            //throw new NotImplementedException();
-            System.Diagnostics.Debug.WriteLine("I am here");
             startWatching();
         }
 
@@ -24,7 +22,6 @@ namespace ClockApp.UWP
         private async void startWatching()
         {
             storageFolder = ApplicationData.Current.LocalFolder;
-            System.Diagnostics.Debug.WriteLine("Folder Path: " + storageFolder.Path);
 
             queryOptions.FolderDepth = Windows.Storage.Search.FolderDepth.Deep;
             var success = await Windows.System.Launcher.LaunchFolderAsync(storageFolder);
