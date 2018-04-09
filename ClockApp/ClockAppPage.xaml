@@ -5,6 +5,7 @@
              x:Class="ClockApp.Core.Forms.ClockAppPage">
 
     <Label x:Name="labelWelcome" Text="Welcome to Xamarin Forms!" VerticalOptions="Center" HorizontalOptions="Center" />
+
     <!--
         <Label VerticalOptions="Center" HorizontalOptions="Center" >
             <OnIdiom x:TypeArguments="Text">

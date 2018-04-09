@@ -9,7 +9,6 @@ using Xamarin.Forms.Xaml;
 
 namespace ClockApp.Core.Forms.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AClonePage : ContentPage
     {
         Data.PlatformType platformType;
@@ -19,13 +18,14 @@ namespace ClockApp.Core.Forms.Views
         {
             InitializeComponent();
             this.platformType = platformType;
+        }
+        /*
             Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
             SizeChanged += (object sender, EventArgs args) =>
             {
                 if (this.Width > 0)
                     clockLabel.FontSize = this.Width / 6;
             };
-        }
         bool OnTimerTick()
         {
             textTime = DateTime.Now.ToString("h:mm:ss tt");
@@ -49,5 +49,6 @@ namespace ClockApp.Core.Forms.Views
             }
             removeButton.IsEnabled = loggerLayout.Children.Count > 0;
         }
+        */
     }
 }
