@@ -13,6 +13,7 @@ namespace ClockApp.Core.Forms
         //Views.ClockSaveBinding clockSaveBindingPage;
         Views.PhoneCall phoneCallPage;
         Views.PasswordSave passwordSave;
+        Views.AClonePage aClonePage;
         Views.FileSystemTracker fileSystemTracker;
 
         public static ContentPage[] tabbedPageContent;
@@ -48,10 +49,11 @@ namespace ClockApp.Core.Forms
             phoneCallPage = new Views.PhoneCall(platformType) { Title = "Phone call" };
             passwordSave = new Views.PasswordSave(platformType) { Title = "Password save" };
             fileSystemTracker = new Views.FileSystemTracker(platformType) { Title = "File System" };
+            aClonePage = new Views.AClonePage(platformType) { Title = "aCP" };
 
 
             tabbedPageContent = new ContentPage[] {helloXamarinPage, clockPage, clockSavePage, 
-                phoneCallPage, passwordSave, fileSystemTracker};
+                phoneCallPage, passwordSave, fileSystemTracker, aClonePage};
 
             foreach(ContentPage page in tabbedPageContent)
             {
