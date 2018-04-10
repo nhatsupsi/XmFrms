@@ -31,8 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml" />
-    <EmbeddedResource Include="ClockAppPage.xaml" />
-    <EmbeddedResource Include="Views\ClockView.xaml">
+    <EmbeddedResource Include="Views\Clock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -57,20 +56,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ClockAppPage.xaml.cs">
-      <DependentUpon>ClockAppPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Data\PlatformType.cs" />
+    <Compile Include="HelloXamarin.xaml.cs">
+      <DependentUpon>HelloXamarin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\AClonePageModel.cs" />
     <Compile Include="ViewModel\FileSystemTrackerModel.cs" />
-    <Compile Include="Views\AClonePage.xaml.cs">
-      <DependentUpon>AClonePage.xaml</DependentUpon>
+    <Compile Include="Views\Clock.xaml.cs">
+      <DependentUpon>Clock.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ClockView.xaml.cs">
-      <DependentUpon>ClockView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModel\ClockViewModel.cs" />
+    <Compile Include="ViewModel\ClockModel.cs" />
     <Compile Include="Views\ClockSave.xaml.cs">
       <DependentUpon>ClockSave.xaml</DependentUpon>
     </Compile>
@@ -127,7 +122,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\AClonePage.xaml">
+    <EmbeddedResource Include="HelloXamarin.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

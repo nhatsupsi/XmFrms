@@ -4,13 +4,13 @@ using Xamarin.Forms;
 
 namespace ClockApp.Core.Forms.ViewModel
 {
-    class ClockViewModel : INotifyPropertyChanged
+    class ClockModel : INotifyPropertyChanged
     {
         DateTime dateTime;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ClockViewModel()
+        public ClockModel()
         {
             this.DateTime = DateTime.Now;
 

@@ -1,17 +1,22 @@
-﻿using ClockApp.Core.Forms.Data;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace ClockApp.Core.Forms
 {
-    public partial class ClockAppPage : ContentPage
+	public partial class HelloXamarin : ContentPage
     {
-        public ClockAppPage()
+        public HelloXamarin()
         {
             InitializeComponent();
         }
-        public ClockAppPage(PlatformType type)
+        public HelloXamarin(Data.PlatformType type)
         {
             InitializeComponent();
             labelWelcome.Text = String.Format("Welcome to Xamarin Forms for {0}!", type);
@@ -23,15 +28,10 @@ namespace ClockApp.Core.Forms
         protected override void OnAppearing()
         {
             Debug.WriteLine("OnAppearing");
-            //MessagingCenter.Subscribe<Services.IFileSystem>(this, "Hi", (sender) => {
-            MessagingCenter.Subscribe<App, string>((App)Application.Current, "AppDataChanged", (sender, args) => {
-                Debug.WriteLine("AppDataChanged");
-            });
         }
         protected override void OnDisappearing()
         {
             Debug.WriteLine("OnDisappearing");
-            MessagingCenter.Unsubscribe<App, string>(this, "AppDataChanged");
         }
     }
 }

@@ -7,13 +7,12 @@ namespace ClockApp.Core.Forms
     public partial class App : Application
     {
         TabbedPage tabbedPage;
-        ClockAppPage helloXamarinPage;
-        Views.ClockView clockPage;
+        HelloXamarin helloXamarinPage;
+        Views.Clock clockPage;
         Views.ClockSave clockSavePage;
         //Views.ClockSaveBinding clockSaveBindingPage;
         Views.PhoneCall phoneCallPage;
         Views.PasswordSave passwordSave;
-        Views.AClonePage aClonePage;
         Views.FileSystemTracker fileSystemTracker;
 
         public static ContentPage[] tabbedPageContent;
@@ -39,21 +38,20 @@ namespace ClockApp.Core.Forms
         {
             tabbedPage = new TabbedPage();
 
-            tabbedPage.Title = "Clock TabbedPage";
+            tabbedPage.Title = "Clock App";
 
 
-            helloXamarinPage = new ClockAppPage(platformType) { Title = "Hello Xamarin" };
-            clockPage = new Views.ClockView() { Title = "Clock" };
+            helloXamarinPage = new HelloXamarin(platformType) { Title = "Hello Xamarin" };
+            clockPage = new Views.Clock() { Title = "Clock" };
             clockSavePage = new Views.ClockSave() { Title = "Clock save" };
             //clockSaveBindingPage = new Views.ClockSaveBinding() { Title = "Button clicked" };
             phoneCallPage = new Views.PhoneCall(platformType) { Title = "Phone call" };
             passwordSave = new Views.PasswordSave(platformType) { Title = "Password save" };
             fileSystemTracker = new Views.FileSystemTracker(platformType) { Title = "File System" };
-            aClonePage = new Views.AClonePage(platformType) { Title = "aCP" };
 
 
             tabbedPageContent = new ContentPage[] {helloXamarinPage, clockPage, clockSavePage, 
-                phoneCallPage, passwordSave, fileSystemTracker, aClonePage};
+                phoneCallPage, passwordSave, fileSystemTracker};
 
             foreach(ContentPage page in tabbedPageContent)
             {

@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace ClockApp.Core.Forms.Views
 {
-    public partial class ClockView : ContentPage
+    public partial class Clock : ContentPage
     {
-        public ClockView()
+        public Clock()
         {
             InitializeComponent();
         }
