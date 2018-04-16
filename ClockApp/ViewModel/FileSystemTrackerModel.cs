@@ -17,10 +17,21 @@ namespace ClockApp.Core.Forms.ViewModel
         public String pathText = "";
         public String changesText = "";
         Data.PlatformType platformType;
+
+        IFileSystem watcher = DependencyService.Get<IFileSystem>();
+
         public FileSystemTrackerModel(Data.PlatformType platformType)
         {
             this.platformType = platformType;
+
+            watcher.Event += Watcher_Event;
         }
+
+        private void Watcher_Event(Data.FileSystemWatcherEventArgs e)
+        {
+            ChangesText += e.ToString() + "\n";
+        }
+
         public String PathText
         {
             get { return pathText; }
@@ -71,7 +82,8 @@ namespace ClockApp.Core.Forms.ViewModel
                 case Data.PlatformType.MacOS:
                 case Data.PlatformType.UWP:
                 case Data.PlatformType.WPF:
-                    DependencyService.Get<IFileSystem>().WatchFolder();
+                    //watcher.FileDeleted -= FileDeleted;
+                    watcher.WatchFolder();
                     PathText = DependencyService.Get<IFileSystem>().GetPath();
                     break;
             }

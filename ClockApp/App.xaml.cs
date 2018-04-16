@@ -8,10 +8,6 @@ namespace ClockApp.Core.Forms
     {
         TabbedPage tabbedPage;
         HelloXamarin helloXamarinPage;
-        Views.Clock clockPage;
-        Views.ClockSave clockSavePage;
-        //Views.ClockSaveBinding clockSaveBindingPage;
-        Views.PhoneCall phoneCallPage;
         Views.PasswordSave passwordSave;
         Views.FileSystemTracker fileSystemTracker;
 
@@ -38,22 +34,17 @@ namespace ClockApp.Core.Forms
         {
             tabbedPage = new TabbedPage();
 
-            tabbedPage.Title = "Clock App";
+            tabbedPage.Title = "Clock TabbedPage";
 
 
             helloXamarinPage = new HelloXamarin(platformType) { Title = "Hello Xamarin" };
-            clockPage = new Views.Clock() { Title = "Clock" };
-            clockSavePage = new Views.ClockSave() { Title = "Clock save" };
-            //clockSaveBindingPage = new Views.ClockSaveBinding() { Title = "Button clicked" };
-            phoneCallPage = new Views.PhoneCall(platformType) { Title = "Phone call" };
             passwordSave = new Views.PasswordSave(platformType) { Title = "Password save" };
             fileSystemTracker = new Views.FileSystemTracker(platformType) { Title = "File System" };
 
 
-            tabbedPageContent = new ContentPage[] {helloXamarinPage, clockPage, clockSavePage, 
-                phoneCallPage, passwordSave, fileSystemTracker};
+            tabbedPageContent = new ContentPage[] { helloXamarinPage, passwordSave, fileSystemTracker };
 
-            foreach(ContentPage page in tabbedPageContent)
+            foreach (ContentPage page in tabbedPageContent)
             {
                 tabbedPage.Children.Add(page);
             }
