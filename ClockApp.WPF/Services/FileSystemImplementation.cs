@@ -2,14 +2,16 @@
 using System;
 using Xamarin.Forms;
 using System.IO;
+using ClockApp.Core.Forms.Data;
 
 [assembly: Dependency(typeof(ClockApp.WPF.FileSystemImplementation))]
 namespace ClockApp.WPF
 {
     class FileSystemImplementation : IFileSystem
     {
-        static int numDataChanged = 0;
         FileSystemWatcher watcher;
+
+        public event Action<FileSystemWatcherEventArgs> Event;
 
         public string GetPath()
         {
@@ -23,8 +25,8 @@ namespace ClockApp.WPF
             watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite
                                     | NotifyFilters.FileName | NotifyFilters.DirectoryName;
             watcher.Changed += new FileSystemEventHandler(OnAppDataChanged);
-            watcher.Created += new FileSystemEventHandler(OnAppDataChanged);
-            watcher.Deleted += new FileSystemEventHandler(OnAppDataChanged);
+            watcher.Created += new FileSystemEventHandler(OnAppDataCreated);
+            watcher.Deleted += new FileSystemEventHandler(OnAppDataDeleted);
             watcher.Renamed += new RenamedEventHandler(OnAppDataRenamed);
             watcher.EnableRaisingEvents = true;
         }
@@ -35,16 +37,24 @@ namespace ClockApp.WPF
 
         private void OnAppDataChanged(object source, FileSystemEventArgs e)
         {
-            numDataChanged++;
-            String message = numDataChanged + "(WPF) File: " + e.FullPath + " " + e.ChangeType;
-            Xamarin.Forms.MessagingCenter.Send<ClockApp.Core.Forms.App, string>((ClockApp.Core.Forms.App)Xamarin.Forms.Application.Current, "AppDataChanged", message);
+            FileSystemWatcherObject o = new FileSystemWatcherObject(e.Name, e.FullPath, (Directory.Exists(e.FullPath)) ? TargetType.Folder : TargetType.File);
+            Event?.Invoke(FileSystemWatcherEventArgs.CreateChangedEvent(o));
+        }
+        private void OnAppDataCreated(object source, FileSystemEventArgs e)
+        {
+            FileSystemWatcherObject o = new FileSystemWatcherObject(e.Name, e.FullPath, (Directory.Exists(e.FullPath)) ? TargetType.Folder : TargetType.File);
+            Event?.Invoke(FileSystemWatcherEventArgs.CreateCreatedEvent(o));
+        }
+        private void OnAppDataDeleted(object source, FileSystemEventArgs e)
+        {
+            FileSystemWatcherObject o = new FileSystemWatcherObject(e.Name, e.FullPath, (Directory.Exists(e.FullPath)) ? TargetType.Folder : TargetType.File);
+            Event?.Invoke(FileSystemWatcherEventArgs.CreateDeletedEvent(o));
         }
         private void OnAppDataRenamed(object source, RenamedEventArgs e)
         {
-            numDataChanged++;
-            String message = numDataChanged + String.Format("(WPF) File: {0} renamed to {1}", e.OldFullPath, e.FullPath);
-            //System.Windows.MessageBox.Show(String.Format("(WPF) File: {0} renamed to {1}", e.OldFullPath, e.FullPath));
-            Xamarin.Forms.MessagingCenter.Send<ClockApp.Core.Forms.App, string>((ClockApp.Core.Forms.App)Xamarin.Forms.Application.Current, "AppDataChanged", message);
+            FileSystemWatcherObject newObject = new FileSystemWatcherObject(e.Name, e.FullPath, (Directory.Exists(e.FullPath)) ? TargetType.Folder : TargetType.File);
+            FileSystemWatcherObject oldObject = new FileSystemWatcherObject(e.OldName, e.OldFullPath, (Directory.Exists(e.FullPath)) ? TargetType.Folder : TargetType.File);
+            Event?.Invoke(FileSystemWatcherEventArgs.CreateRenamedEvent(newObject, oldObject));
         }
     }
 }
