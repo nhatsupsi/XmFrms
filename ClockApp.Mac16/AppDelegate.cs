@@ -22,7 +22,12 @@ namespace ClockApp.Mac16
         public override void DidFinishLaunching(NSNotification notification)
         {
             Forms.Init();
-            LoadApplication(new Core.Forms.App(Core.Forms.Data.PlatformType.MacOS));
+            Core.Forms.App a = new Core.Forms.App(Core.Forms.Data.PlatformType.MacOS);
+            LoadApplication(a);
+            ShowStatusBoardImplementation statusBoardImplementation = new ShowStatusBoardImplementation();
+            statusBoardImplementation.Create(a.tabbedPageContent);
+
+            System.Diagnostics.Debug.WriteLine("DidFinishLaunching");
             base.DidFinishLaunching(notification);
         }
     }

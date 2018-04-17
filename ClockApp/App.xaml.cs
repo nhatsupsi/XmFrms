@@ -11,9 +11,11 @@ namespace ClockApp.Core.Forms
         Views.PasswordSave passwordSave;
         Views.FileSystemTracker fileSystemTracker;
 
-        public static ContentPage[] tabbedPageContent;
+        public ContentPage[] tabbedPageContent;
 
         PlatformType platformType;
+
+        //IShowStatusBoard statusBoardDS;
 
         public App(PlatformType platformType)
         {
@@ -29,7 +31,17 @@ namespace ClockApp.Core.Forms
             }
             MainPage = tabbedPage;
 
+
+            //System.Diagnostics.Debug.WriteLine("App cost");
         }
+        /*
+        private void StatusBoardDS_Event(Data.ShowStatusEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("StatusBoardDS_Event");
+            tabbedPage.CurrentPage = tabbedPage.Children[e.pageIndex];
+        }
+        */
+
         private void initTabbedPage()
         {
             tabbedPage = new TabbedPage();
@@ -56,10 +68,16 @@ namespace ClockApp.Core.Forms
             // Handle when your app starts
             Debug.WriteLine("OnStart");
 
+
             // Create Statusbar for MAC and take action when its item is clicked
             if (platformType == Data.PlatformType.MacOS || platformType == Data.PlatformType.WPF)
             {
-                DependencyService.Get<IShowStatusBoard>().Create(tabbedPageContent);
+                /*
+                System.Diagnostics.Debug.WriteLine("DependencyService.Get");
+                statusBoardDS = DependencyService.Get<IShowStatusBoard>();
+                statusBoardDS.Event += StatusBoardDS_Event;
+                */
+                //DependencyService.Get<IShowStatusBoard>().Create(tabbedPageContent);
                 MessagingCenter.Subscribe<App, int>((App)Application.Current, "StatusBarItemChanged", (sender, pageIndex) => {
                     tabbedPage.CurrentPage = tabbedPage.Children[pageIndex];
                 });

@@ -17,8 +17,8 @@ namespace ClockApp.Core.Forms.Views
         }
         protected override void OnAppearing()
         {
-            if (platformType == Data.PlatformType.MacOS)
-                DependencyService.Get<IShowStatusBoard>().Create(App.tabbedPageContent);
+            //if (platformType == Data.PlatformType.MacOS)
+            //    DependencyService.Get<IShowStatusBoard>().Create(App.tabbedPageContent);
         }
     }
 }

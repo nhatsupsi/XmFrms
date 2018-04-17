@@ -80,7 +80,7 @@ namespace ClockApp.Core.Forms.ViewModel
                     if ( fswStatus == FileSystemWatcherStatus.Stop)
                     {
                         watcher.WatchFolder();
-                        PathText = DependencyService.Get<IFileSystem>().GetPath();
+                        PathText = watcher.GetPath();
                     }
                     break;
             }
