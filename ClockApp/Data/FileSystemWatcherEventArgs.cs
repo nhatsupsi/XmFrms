@@ -18,7 +18,7 @@ namespace ClockApp.Core.Forms.Data
         public DateTime date;
 
         public FileSystemWatcherObject target;
-        public FileSystemWatcherObject oldTargetStat;
+        public FileSystemWatcherObject oldTargetStat=null;
         public ActionType actionType;
 
         FileSystemWatcherEventArgs(FileSystemWatcherObject target, ActionType actionType)
@@ -46,13 +46,17 @@ namespace ClockApp.Core.Forms.Data
         {
             return new FileSystemWatcherEventArgs(target, ActionType.Deleted);
         }
+        public static FileSystemWatcherEventArgs CreateRenamedEvent(FileSystemWatcherObject target)
+        {
+            return new FileSystemWatcherEventArgs(target, ActionType.Renamed);
+        }
         public static FileSystemWatcherEventArgs CreateRenamedEvent(FileSystemWatcherObject target, FileSystemWatcherObject oldTargetStat)
         {
             return new FileSystemWatcherEventArgs(target, oldTargetStat, ActionType.Renamed);
         }
         public override string ToString()
         {
-            if (actionType == ActionType.Renamed)
+            if (actionType == ActionType.Renamed && oldTargetStat!=null)
                 return String.Format("{0} {1} ({3}) is {4} to {2}", date.ToString("h:mm:ss tt"), oldTargetStat.Name, target.Name, target.Type, actionType);
             else
                 return String.Format("{0} {1} ({2}) is {3}", date.ToString("h:mm:ss tt"), target.Name, target.Type, actionType);

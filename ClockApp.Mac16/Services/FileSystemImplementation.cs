@@ -4,6 +4,7 @@ using AppKit;
 using ClockApp.Core.Forms.Services;
 using Foundation;
 using Xamarin.Forms;
+using ClockApp.Core.Forms.Data;
 
 [assembly: Dependency(typeof(ClockApp.Mac16.FileSystemImplementation))]
 namespace ClockApp.Mac16
@@ -12,9 +13,8 @@ namespace ClockApp.Mac16
     {
         static int numDataChanged = 0;
         FSEventStream eventStream;
-        public FileSystemImplementation()
-        {
-        }
+
+        public event Action<FileSystemWatcherEventArgs> Event;
 
         public string GetPath()
         {
@@ -29,7 +29,7 @@ namespace ClockApp.Mac16
         {
             TimeSpan eventLatency = TimeSpan.FromSeconds(1);
             //https://developer.apple.com/documentation/coreservices/file_system_events/1455376-fseventstreamcreateflags
-            eventStream = new FSEventStream(new[] { path }, eventLatency, FSEventStreamCreateFlags.FileEvents);
+            eventStream = new FSEventStream(new[] { path }, eventLatency, FSEventStreamCreateFlags.FileEvents | FSEventStreamCreateFlags.NoDefer);
             eventStream.Events += OnAppDataChanged;
             eventStream.ScheduleWithRunLoop(NSRunLoop.Current);
             eventStream.Start();
@@ -40,8 +40,24 @@ namespace ClockApp.Mac16
             {
                 numDataChanged++;
                 String message = numDataChanged + " " + evnt;
-                Xamarin.Forms.MessagingCenter.Send<ClockApp.Core.Forms.App, string>((ClockApp.Core.Forms.App)Xamarin.Forms.Application.Current, "AppDataChanged", message);
-                //System.Diagnostics.Debug.WriteLine(evnt);
+                System.Diagnostics.Debug.WriteLine(evnt);
+                FileSystemWatcherObject o = new FileSystemWatcherObject(evnt.Path, evnt.Path, (evnt.Flags.HasFlag(FSEventStreamEventFlags.ItemIsDir) ? TargetType.Folder : TargetType.File));
+                if(evnt.Flags.HasFlag(FSEventStreamEventFlags.ItemRenamed))
+                {
+                    Event?.Invoke(FileSystemWatcherEventArgs.CreateRenamedEvent(o));
+                }
+                else if (evnt.Flags.HasFlag(FSEventStreamEventFlags.ItemCreated))
+                {
+                    Event?.Invoke(FileSystemWatcherEventArgs.CreateCreatedEvent(o));
+                }
+                else if (evnt.Flags.HasFlag(FSEventStreamEventFlags.ItemRemoved))
+                {
+                    Event?.Invoke(FileSystemWatcherEventArgs.CreateDeletedEvent(o));
+                }
+                else if (evnt.Flags.HasFlag(FSEventStreamEventFlags.ItemModified))
+                {
+                    Event?.Invoke(FileSystemWatcherEventArgs.CreateChangedEvent(o));
+                }
             }
         }
     }

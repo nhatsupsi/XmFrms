@@ -9,8 +9,6 @@ namespace ClockApp.iOS
 
     public class ClipBoardImplementation : IClipboard
     {
-        public ClipBoardImplementation() { }
-
         public string GetTextFromClipBoard()
         {
             UIPasteboard clipboard = UIPasteboard.General;
