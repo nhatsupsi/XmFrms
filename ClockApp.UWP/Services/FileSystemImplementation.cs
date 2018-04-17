@@ -15,8 +15,8 @@ namespace ClockApp.UWP
         public event Action<FileSystemWatcherEventArgs> Event;
 
         Windows.Storage.Search.QueryOptions queryOptions = new Windows.Storage.Search.QueryOptions(Windows.Storage.Search.CommonFolderQuery.DefaultQuery);
-        Windows.Storage.Search.StorageFileQueryResult query;
-        IReadOnlyList<StorageFile> oldFileList;
+        Windows.Storage.Search.StorageItemQueryResult query;
+        IReadOnlyList<IStorageItem> oldFileList;
 
         public void WatchFolder()
         {
@@ -33,33 +33,37 @@ namespace ClockApp.UWP
 
             queryOptions.FolderDepth = Windows.Storage.Search.FolderDepth.Deep;
             var success = await Windows.System.Launcher.LaunchFolderAsync(storageFolder);
-            query = storageFolder.CreateFileQueryWithOptions(queryOptions);
+            query = storageFolder.CreateItemQueryWithOptions(queryOptions);
 
             query.ContentsChanged -= OnAppDataChanged;
             query.ContentsChanged += OnAppDataChanged;
-            oldFileList = await query.GetFilesAsync();
+            oldFileList = await query.GetItemsAsync();
         }
 
+        // https://docs.microsoft.com/en-us/uwp/api/windows.storage.search.istoragequeryresultbase
+        // https://docs.microsoft.com/en-us/uwp/api/windows.storage.search.storageitemqueryresult
+        // https://docs.microsoft.com/en-us/uwp/api/windows.storage.istorageitem
         private async void OnAppDataChanged(Windows.Storage.Search.IStorageQueryResultBase sender, object args)
         {
-            var newFileList = await query.GetFilesAsync();
+            var newFileList = await query.GetItemsAsync();
             DiffSet diffSet = await Diff(oldFileList, newFileList);
             oldFileList = newFileList;
-            foreach (StorageFile file in diffSet.Added)
+            foreach (IStorageItem file in diffSet.Added)
             {
-                FileSystemWatcherObject o = new FileSystemWatcherObject(file.DisplayName, file.Path, (file.DisplayType.Equals("Folder") ? TargetType.Folder : TargetType.File));
+                System.Diagnostics.Debug.WriteLine((file.IsOfType(StorageItemTypes.Folder) ? TargetType.Folder : TargetType.File));
+                FileSystemWatcherObject o = new FileSystemWatcherObject(file.Name, file.Path, (file.IsOfType(StorageItemTypes.Folder) ? TargetType.Folder : TargetType.File));
                 Event?.Invoke(FileSystemWatcherEventArgs.CreateCreatedEvent(o));
             }
-            foreach (StorageFile file in diffSet.Deleted)
+            foreach (IStorageItem file in diffSet.Deleted)
             {
-                System.Diagnostics.Debug.WriteLine(file.DisplayType);
-                FileSystemWatcherObject o = new FileSystemWatcherObject(file.DisplayName, file.Path, (file.DisplayType.Equals("Folder") ? TargetType.Folder : TargetType.File));
+                System.Diagnostics.Debug.WriteLine((file.IsOfType(StorageItemTypes.Folder) ? TargetType.Folder : TargetType.File));
+                FileSystemWatcherObject o = new FileSystemWatcherObject(file.Name, file.Path, (file.IsOfType(StorageItemTypes.Folder) ? TargetType.Folder : TargetType.File));
                 Event?.Invoke(FileSystemWatcherEventArgs.CreateDeletedEvent(o));
             }
-            foreach (StorageFile file in diffSet.Changed)
+            foreach (IStorageItem file in diffSet.Changed)
             {
-                System.Diagnostics.Debug.WriteLine(file.DisplayType);
-                FileSystemWatcherObject o = new FileSystemWatcherObject(file.DisplayName, file.Path, (file.DisplayType.Equals("Folder") ? TargetType.Folder : TargetType.File));
+                System.Diagnostics.Debug.WriteLine((file.IsOfType(StorageItemTypes.Folder) ? TargetType.Folder : TargetType.File));
+                FileSystemWatcherObject o = new FileSystemWatcherObject(file.Name, file.Path, (file.IsOfType(StorageItemTypes.Folder) ? TargetType.Folder : TargetType.File));
                 Event?.Invoke(FileSystemWatcherEventArgs.CreateChangedEvent(o));
             }
 
@@ -79,18 +83,18 @@ namespace ClockApp.UWP
         // an solution (check manually): https://stackoverflow.com/questions/15575926/identifying-file-changes-in-storagefolder
         private class DiffSet
         {
-            public IReadOnlyList<StorageFile> Added { get; set; }
-            public IReadOnlyList<StorageFile> Deleted { get; set; }
-            public IReadOnlyList<StorageFile> Changed { get; set; }
+            public IReadOnlyList<IStorageItem> Added { get; set; }
+            public IReadOnlyList<IStorageItem> Deleted { get; set; }
+            public IReadOnlyList<IStorageItem> Changed { get; set; }
         }
 
-        private static async Task<DiffSet> Diff(IEnumerable<StorageFile> oldSet, IEnumerable<StorageFile> newSet)
+        private static async Task<DiffSet> Diff(IEnumerable<IStorageItem> oldSet, IEnumerable<IStorageItem> newSet)
         {
             var newAsDict = newSet.ToDictionary(sf => sf.Path);
 
-            var added = new List<StorageFile>();
-            var deleted = new List<StorageFile>();
-            var changed = new List<StorageFile>();
+            var added = new List<IStorageItem>();
+            var deleted = new List<IStorageItem>();
+            var changed = new List<IStorageItem>();
 
             var fromOldSet = new HashSet<string>();
 

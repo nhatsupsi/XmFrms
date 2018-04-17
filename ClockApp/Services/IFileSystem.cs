@@ -2,6 +2,12 @@
 using System;
 namespace ClockApp.Core.Forms.Services
 {
+    public enum FileSystemWatcherStatus
+    {
+        Start,
+        Pause,
+        Stop
+    }
     public interface IFileSystem
     {
         event Action<FileSystemWatcherEventArgs> Event;
