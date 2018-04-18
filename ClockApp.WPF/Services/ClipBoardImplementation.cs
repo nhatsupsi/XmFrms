@@ -14,12 +14,17 @@ namespace ClockApp.WPF
     {
         public string GetTextFromClipBoard()
         {
-            throw new NotImplementedException();
+            return (String)Clipboard.GetDataObject().GetData(DataFormats.Text);
         }
 
         public void OnCopy(string text)
         {
             Clipboard.SetDataObject(text);
+            Xamarin.Forms.MessagingCenter.Send<ClockApp.Core.Forms.App, String>(
+                (ClockApp.Core.Forms.App)Xamarin.Forms.Application.Current,
+                "ClipBoardOnCopy",
+                GetTextFromClipBoard()
+                );
         }
     }
 }

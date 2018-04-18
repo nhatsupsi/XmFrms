@@ -104,9 +104,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Components\MenuNotifyIcon.cs" />
     <Compile Include="Services\ClipBoardImplementation.cs" />
     <Compile Include="Services\FileSystemImplementation.cs" />
-    <Compile Include="Services\ShowStatusBoardImplementation.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

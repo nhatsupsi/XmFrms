@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClockApp.WPF.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,8 +35,8 @@ namespace ClockApp.WPF
             //this.Icon = "./Resources/Icons/clockIcon.png";
             this.WindowStyle = WindowStyle.SingleBorderWindow;
             
-            ShowStatusBoardImplementation notifyIcon = new ShowStatusBoardImplementation();
-            notifyIcon.CreateNotifyIcon(app.TabbedPageContent);
+            MenuNotifyIcon notifyIcon = new MenuNotifyIcon(app);
+            notifyIcon.Create(app.TabbedPageContent);
         }
     }
 }

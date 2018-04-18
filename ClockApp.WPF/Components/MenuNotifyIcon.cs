@@ -5,19 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(ClockApp.WPF.ShowStatusBoardImplementation))]
-namespace ClockApp.WPF
+namespace ClockApp.WPF.Components
 {
-    class ShowStatusBoardImplementation
+    class MenuNotifyIcon
     {
-        /*
-        public void Create(ContentPage[] contentPages)
+        Core.Forms.App app;
+
+        public MenuNotifyIcon(Core.Forms.App app)
         {
-            Components.SystemNotifyAreaComponent notificationIcon=new Components.SystemNotifyAreaComponent();
-            notificationIcon.CreateNotifyIcon(contentPages);
+            this.app = app;
         }
-        */
-        public void CreateNotifyIcon(ContentPage[] contentPages)
+        public void Create(ContentPage[] contentPages)
         {
             System.Windows.Forms.NotifyIcon ni = new System.Windows.Forms.NotifyIcon();
             System.IO.Stream iconStream = App.GetResourceStream(new Uri("pack://application:,,,./clockIcon2.ico")).Stream;
@@ -33,11 +31,7 @@ namespace ClockApp.WPF
                 delegate (object sender, EventArgs args)
                 {
                     int index = getSelectedItemIndex(((System.Windows.Forms.MenuItem)sender).Text, contentPages);
-                    Xamarin.Forms.MessagingCenter.Send<ClockApp.Core.Forms.App, int>(
-                        (ClockApp.Core.Forms.App)Xamarin.Forms.Application.Current,
-                        "StatusBarItemChanged",
-                        index
-                    );
+                    app.AppTabbedPage.CurrentPage = app.AppTabbedPage.Children[index];
                 };
             }
             System.Windows.Forms.ContextMenu contextMenu = new System.Windows.Forms.ContextMenu();

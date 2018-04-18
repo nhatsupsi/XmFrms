@@ -10,7 +10,12 @@ namespace ClockApp.WPF
     class FileSystemImplementation : IFileSystem
     {
         FileSystemWatcher watcher;
+        bool isStarted = false;
 
+        public bool IsStarted
+        {
+            get { return isStarted; }
+        }
         public event Action<FileSystemWatcherEventArgs> Event;
 
         public string GetPath()
@@ -18,23 +23,47 @@ namespace ClockApp.WPF
             return watcher.Path;
         }
 
-        public void WatchFolder()
+        public bool InitWatchFolder()
         {
-            watcher = new FileSystemWatcher("C:\\Users\\TOSHIBA LAP\\Desktop\\untitledfolder", "*.*");
-            watcher.IncludeSubdirectories = true;
-            watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite
-                                    | NotifyFilters.FileName | NotifyFilters.DirectoryName;
-            watcher.Changed += new FileSystemEventHandler(OnAppDataChanged);
-            watcher.Created += new FileSystemEventHandler(OnAppDataCreated);
-            watcher.Deleted += new FileSystemEventHandler(OnAppDataDeleted);
-            watcher.Renamed += new RenamedEventHandler(OnAppDataRenamed);
-            watcher.EnableRaisingEvents = true;
-        }
-        public void WatchFolder(string path)
-        {
-            WatchFolder();
+            return InitWatchFolder("C:\\Users\\TOSHIBA LAP\\Desktop\\untitledfolder");
         }
 
+        public bool InitWatchFolder(string path)
+        {
+            try
+            { 
+                watcher = new FileSystemWatcher(path, "*.*");
+                watcher.IncludeSubdirectories = true;
+                watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite
+                                        | NotifyFilters.FileName | NotifyFilters.DirectoryName;
+                watcher.Changed += new FileSystemEventHandler(OnAppDataChanged);
+                watcher.Created += new FileSystemEventHandler(OnAppDataCreated);
+                watcher.Deleted += new FileSystemEventHandler(OnAppDataDeleted);
+                watcher.Renamed += new RenamedEventHandler(OnAppDataRenamed);
+                watcher.EnableRaisingEvents = false;
+                return true;
+            }catch(Exception e)
+            {
+                return false;
+            }
+        }
+
+        public void Resume()
+        {
+            watcher.EnableRaisingEvents = true;
+        }
+
+        public void Start()
+        {
+            isStarted = true;
+            watcher.EnableRaisingEvents = true;
+        }
+
+        public void Stop()
+        {
+            watcher.EnableRaisingEvents = false;
+        }
+        
         private void OnAppDataChanged(object source, FileSystemEventArgs e)
         {
             FileSystemWatcherObject o = new FileSystemWatcherObject(e.Name, e.FullPath, (Directory.Exists(e.FullPath)) ? TargetType.Folder : TargetType.File);
