@@ -3,8 +3,8 @@ using ClockApp.Core.Forms.Data;
 using ClockApp.Core.Forms.Services;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(ClockApp.iOS.FileSystemImplementation))]
-namespace ClockApp.iOS
+[assembly: Dependency(typeof(ClockApp.Droid.FileSystemImplementation))]
+namespace ClockApp.Droid
 {
     public class FileSystemImplementation : IFileSystem
     {
@@ -15,6 +15,7 @@ namespace ClockApp.iOS
         {
             get { return isStarted; }
         }
+
         public string GetPath()
         {
             return "";
@@ -31,7 +32,6 @@ namespace ClockApp.iOS
         public void Stop()
         {
         }
-
         public bool InitWatchFolder()
         {
             return InitWatchFolder("");

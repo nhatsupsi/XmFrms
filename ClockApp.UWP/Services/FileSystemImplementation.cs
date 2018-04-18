@@ -19,7 +19,8 @@ namespace ClockApp.UWP
         Windows.Storage.Search.StorageItemQueryResult query;
         IReadOnlyList<IStorageItem> oldFileList;
 
-        public bool IsStarted {
+        public bool IsStarted
+        {
             get { return isStarted; }
         }
 
