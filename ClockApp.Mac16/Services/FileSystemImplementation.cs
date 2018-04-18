@@ -16,32 +16,16 @@ namespace ClockApp.Mac16
         Boolean isStarted = false;
         String path;
 
+        public bool IsStarted
+        {
+            get { return isStarted; }
+        }
         public event Action<FileSystemWatcherEventArgs> Event;
 
         public string GetPath()
         {
             return path;
             //return eventStream.PathsBeingWatched.GetValue(0).ToString();
-        }
-        public Boolean WatchFolder()
-        {
-            return WatchFolder("/Users/nguyen/Desktop/untitledfolder");
-        }
-        public Boolean WatchFolder(String path)
-        {
-            try{
-                this.path = path;
-                TimeSpan eventLatency = TimeSpan.FromSeconds(1);
-                //https://developer.apple.com/documentation/coreservices/file_system_events/1455376-fseventstreamcreateflags
-                eventStream = new FSEventStream(new[] { path }, eventLatency, FSEventStreamCreateFlags.FileEvents | FSEventStreamCreateFlags.NoDefer);
-                eventStream.Events += OnAppDataChanged;
-                eventStream.ScheduleWithRunLoop(NSRunLoop.Current);
-                Start();
-                return true;
-            }catch(Exception e){
-                this.path = null;
-                return false;
-            }
         }
         public void Start()
         {
@@ -82,6 +66,31 @@ namespace ClockApp.Mac16
                 {
                     Event?.Invoke(FileSystemWatcherEventArgs.CreateChangedEvent(o));
                 }
+            }
+        }
+
+        public bool InitWatchFolder()
+        {
+            return InitWatchFolder("/Users/nguyen/Desktop/untitledfolder");
+        }
+
+        public bool InitWatchFolder(string path)
+        {
+            try
+            {
+                this.path = path;
+                TimeSpan eventLatency = TimeSpan.FromSeconds(1);
+                //https://developer.apple.com/documentation/coreservices/file_system_events/1455376-fseventstreamcreateflags
+                eventStream = new FSEventStream(new[] { path }, eventLatency, FSEventStreamCreateFlags.FileEvents | FSEventStreamCreateFlags.NoDefer);
+                eventStream.Events += OnAppDataChanged;
+                eventStream.ScheduleWithRunLoop(NSRunLoop.Current);
+                Start();
+                return true;
+            }
+            catch (Exception e)
+            {
+                this.path = null;
+                return false;
             }
         }
     }
