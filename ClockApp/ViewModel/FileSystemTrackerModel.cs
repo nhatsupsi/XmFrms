@@ -1,11 +1,6 @@
 ﻿using ClockApp.Core.Forms.Services;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace ClockApp.Core.Forms.ViewModel
@@ -20,19 +15,17 @@ namespace ClockApp.Core.Forms.ViewModel
 
         IFileSystem watcher = DependencyService.Get<IFileSystem>();
 
-        FileSystemWatcherStatus fswStatus = FileSystemWatcherStatus.Stop;
-
         public FileSystemTrackerModel(Data.PlatformType platformType)
         {
             this.platformType = platformType;
 
             watcher.Event += Watcher_Event;
+            startWatching();
         }
 
         private void Watcher_Event(Data.FileSystemWatcherEventArgs e)
         {
-            if(fswStatus== FileSystemWatcherStatus.Start)
-                ChangesText += e.ToString() + "\n";
+            ChangesText += e.ToString() + "\n";
         }
 
         public String PathText
@@ -43,7 +36,6 @@ namespace ClockApp.Core.Forms.ViewModel
                 if (value != pathText)
                 {
                     pathText = value;
-                    PropertyChanged(this, new PropertyChangedEventArgs("PathText"));
                 }
             }
         }
@@ -61,14 +53,11 @@ namespace ClockApp.Core.Forms.ViewModel
         }
         public void pageOnAppearing()
         {
-            if (fswStatus == FileSystemWatcherStatus.Stop)
-                startWatching();
-
-            fswStatus = FileSystemWatcherStatus.Start;
+            watcher.Resume();
         }
         public void pageOnDisappearing()
         {
-            fswStatus = FileSystemWatcherStatus.Pause;
+            watcher.Stop();
         }
         public void startWatching()
         {
@@ -77,11 +66,8 @@ namespace ClockApp.Core.Forms.ViewModel
                 case Data.PlatformType.MacOS:
                 case Data.PlatformType.UWP:
                 case Data.PlatformType.WPF:
-                    if ( fswStatus == FileSystemWatcherStatus.Stop)
-                    {
-                        watcher.WatchFolder();
+                    if(watcher.WatchFolder())
                         PathText = watcher.GetPath();
-                    }
                     break;
             }
         }

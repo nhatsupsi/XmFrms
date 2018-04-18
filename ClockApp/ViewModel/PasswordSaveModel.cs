@@ -12,8 +12,10 @@ namespace ClockApp.Core.Forms.ViewModel
         public String passwordText="";
 
         public PasswordSaveModel()
-
         {
+            MessagingCenter.Subscribe<App, String>((App)Application.Current, "ClipBoardOnCopy", (sender, textFromClipBoard) => {
+                Device.BeginInvokeOnMainThread(async () => { await Application.Current.MainPage.DisplayAlert("Message", "Copy: " + textFromClipBoard, "Ok"); });
+            });
         }
         public String PasswordText
         {
@@ -33,7 +35,7 @@ namespace ClockApp.Core.Forms.ViewModel
             {
                 return new Command(() => {
                     DependencyService.Get<IClipboard>().OnCopy(passwordText);
-                    Device.BeginInvokeOnMainThread(async () => { await Application.Current.MainPage.DisplayAlert("Message", "Copy: " + passwordText, "Ok"); });
+                    //Device.BeginInvokeOnMainThread(async () => { await Application.Current.MainPage.DisplayAlert("Message", "Copy: " + passwordText, "Ok"); });
                 });
             }
         }

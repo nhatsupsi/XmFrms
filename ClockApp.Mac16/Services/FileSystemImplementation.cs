@@ -13,26 +13,50 @@ namespace ClockApp.Mac16
     {
         static int numDataChanged = 0;
         FSEventStream eventStream;
+        Boolean isStarted = false;
+        String path;
 
         public event Action<FileSystemWatcherEventArgs> Event;
 
         public string GetPath()
         {
-            return eventStream.PathsBeingWatched.GetValue(0).ToString();
+            return path;
+            //return eventStream.PathsBeingWatched.GetValue(0).ToString();
         }
-
-        public void WatchFolder()
+        public Boolean WatchFolder()
         {
-            WatchFolder("/Users/nguyen/Desktop/untitledfolder");
+            return WatchFolder("/Users/nguyen/Desktop/untitledfolder");
         }
-        public void WatchFolder(String path)
+        public Boolean WatchFolder(String path)
         {
-            TimeSpan eventLatency = TimeSpan.FromSeconds(1);
-            //https://developer.apple.com/documentation/coreservices/file_system_events/1455376-fseventstreamcreateflags
-            eventStream = new FSEventStream(new[] { path }, eventLatency, FSEventStreamCreateFlags.FileEvents | FSEventStreamCreateFlags.NoDefer);
-            eventStream.Events += OnAppDataChanged;
-            eventStream.ScheduleWithRunLoop(NSRunLoop.Current);
+            try{
+                this.path = path;
+                TimeSpan eventLatency = TimeSpan.FromSeconds(1);
+                //https://developer.apple.com/documentation/coreservices/file_system_events/1455376-fseventstreamcreateflags
+                eventStream = new FSEventStream(new[] { path }, eventLatency, FSEventStreamCreateFlags.FileEvents | FSEventStreamCreateFlags.NoDefer);
+                eventStream.Events += OnAppDataChanged;
+                eventStream.ScheduleWithRunLoop(NSRunLoop.Current);
+                Start();
+                return true;
+            }catch(Exception e){
+                this.path = null;
+                return false;
+            }
+        }
+        public void Start()
+        {
+            isStarted = true;
             eventStream.Start();
+        }
+        public void Stop()
+        {
+            isStarted = false;
+            eventStream.Stop();
+        }
+        public void Resume()
+        {
+            if(!isStarted)
+                eventStream.Start();
         }
         void OnAppDataChanged(object sender, FSEventStreamEventsArgs e)
         {

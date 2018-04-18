@@ -11,11 +11,9 @@ namespace ClockApp.Core.Forms
         Views.PasswordSave passwordSave;
         Views.FileSystemTracker fileSystemTracker;
 
-        public ContentPage[] tabbedPageContent;
+        ContentPage[] tabbedPageContent;
 
         PlatformType platformType;
-
-        //IShowStatusBoard statusBoardDS;
 
         public App(PlatformType platformType)
         {
@@ -30,17 +28,16 @@ namespace ClockApp.Core.Forms
                 tabbedPage.BarBackgroundColor = Color.Black;
             }
             MainPage = tabbedPage;
-
-
-            //System.Diagnostics.Debug.WriteLine("App cost");
         }
-        /*
-        private void StatusBoardDS_Event(Data.ShowStatusEventArgs e)
+
+        public TabbedPage AppTabbedPage
         {
-            System.Diagnostics.Debug.WriteLine("StatusBoardDS_Event");
-            tabbedPage.CurrentPage = tabbedPage.Children[e.pageIndex];
+            get { return tabbedPage; }
         }
-        */
+        public ContentPage[] TabbedPageContent
+        {
+            get { return tabbedPageContent; }
+        }
 
         private void initTabbedPage()
         {
@@ -67,21 +64,6 @@ namespace ClockApp.Core.Forms
         {
             // Handle when your app starts
             Debug.WriteLine("OnStart");
-
-
-            // Create Statusbar for MAC and take action when its item is clicked
-            if (platformType == Data.PlatformType.MacOS || platformType == Data.PlatformType.WPF)
-            {
-                /*
-                System.Diagnostics.Debug.WriteLine("DependencyService.Get");
-                statusBoardDS = DependencyService.Get<IShowStatusBoard>();
-                statusBoardDS.Event += StatusBoardDS_Event;
-                */
-                //DependencyService.Get<IShowStatusBoard>().Create(tabbedPageContent);
-                MessagingCenter.Subscribe<App, int>((App)Application.Current, "StatusBarItemChanged", (sender, pageIndex) => {
-                    tabbedPage.CurrentPage = tabbedPage.Children[pageIndex];
-                });
-            }
         }
 
         protected override void OnSleep()

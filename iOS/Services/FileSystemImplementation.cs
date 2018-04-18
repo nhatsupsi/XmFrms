@@ -9,19 +9,33 @@ namespace ClockApp.iOS
     public class FileSystemImplementation : IFileSystem
     {
         public event Action<FileSystemWatcherEventArgs> Event;
+        Boolean isStarted = false;
 
         public string GetPath()
         {
             return "";
         }
 
-        public void WatchFolder()
+        public void Resume()
         {
         }
 
-        public void WatchFolder(string path)
+        public void Start()
         {
-            WatchFolder();
+        }
+
+        public void Stop()
+        {
+        }
+
+        public bool WatchFolder()
+        {
+            return WatchFolder("");
+        }
+
+        public bool WatchFolder(string path)
+        {
+            return false;
         }
     }
 }

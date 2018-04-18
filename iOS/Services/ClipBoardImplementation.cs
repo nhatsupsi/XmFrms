@@ -19,6 +19,12 @@ namespace ClockApp.iOS
         {
             UIPasteboard clipboard = UIPasteboard.General;
             clipboard.String = text;
+
+            Xamarin.Forms.MessagingCenter.Send<ClockApp.Core.Forms.App, String>(
+                (ClockApp.Core.Forms.App)Xamarin.Forms.Application.Current,
+                "ClipBoardOnCopy",
+                GetTextFromClipBoard()
+            );
         }
     }
 }

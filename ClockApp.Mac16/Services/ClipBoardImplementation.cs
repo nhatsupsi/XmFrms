@@ -13,7 +13,7 @@ namespace ClockApp.Mac16
         {
         }
 
-        public string GetTextFromClipBoard()
+        public String GetTextFromClipBoard()
         {
             throw new NotImplementedException();
         }
@@ -23,6 +23,12 @@ namespace ClockApp.Mac16
             var pasteboard = NSPasteboard.GeneralPasteboard;
             pasteboard.ClearContents();
             pasteboard.WriteObjects(new NSString[] { new NSString(text) });
+
+            Xamarin.Forms.MessagingCenter.Send<ClockApp.Core.Forms.App, String>(
+                (ClockApp.Core.Forms.App)Xamarin.Forms.Application.Current,
+                "ClipBoardOnCopy",
+                text
+            );
         }
     }
 }

@@ -2,14 +2,22 @@
 using AppKit;
 using Xamarin.Forms;
 
-namespace ClockApp.Mac16.Components
+[assembly: Dependency(typeof(ClockApp.Mac16.ShowStatusBoardImplementation))]
+namespace ClockApp.Mac16
 {
-    public class SystemStatusBarComponent
+    public class ShowStatusBoardImplementation
     {
         public NSStatusBar statusBar;
-        public void SetSystemStaticBar(ContentPage[] contentPages)
+        Core.Forms.App app;
+
+        public ShowStatusBoardImplementation(Core.Forms.App app)
         {
             statusBar = NSStatusBar.SystemStatusBar;
+            this.app = app;
+        }
+
+        public void Create(ContentPage[] contentPages)
+        {
             var item = statusBar.CreateStatusItem(NSStatusItemLength.Variable);
             //item.Title = "Popup";
             item.HighlightMode = true;
@@ -22,16 +30,13 @@ namespace ClockApp.Mac16.Components
 
                 popupDialog.Activated += (sender, e) => {
                     int index = getSelectedItemIndex(((NSMenuItem)sender).Title, contentPages);
-                    Xamarin.Forms.MessagingCenter.Send<ClockApp.Core.Forms.App, int>(
-                        (ClockApp.Core.Forms.App)Xamarin.Forms.Application.Current, 
-                        "StatusBarItemChanged", 
-                        index
-                    );
+                    System.Diagnostics.Debug.WriteLine("Index "+index);
+                    app.AppTabbedPage.CurrentPage = app.AppTabbedPage.Children[index];
                 };
                 item.Menu.AddItem(popupDialog);
             }
         }
-        int getSelectedItemIndex(string title, ContentPage[] contentPages)
+        int getSelectedItemIndex(String title, ContentPage[] contentPages)
         {
             for (int i = 0; i < contentPages.Length; i++)
                 if (contentPages[i].Title.Equals(title))

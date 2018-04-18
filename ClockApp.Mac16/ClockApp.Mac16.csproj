@@ -106,7 +106,6 @@
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\ClipBoardImplementation.cs" />
-    <Compile Include="Services\ShowStatusBoardImplementation.cs" />
     <Compile Include="MainWindowController.cs" />
     <Compile Include="MainWindowController.designer.cs">
       <DependentUpon>MainWindowController.cs</DependentUpon>
@@ -116,7 +115,7 @@
       <DependentUpon>MainWindowControllerController.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\FileSystemImplementation.cs" />
-    <Compile Include="Components\SystemStatusBarComponent.cs" />
+    <Compile Include="Components\MenuStatusBar.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
