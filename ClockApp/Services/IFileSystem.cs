@@ -5,8 +5,11 @@ namespace ClockApp.Core.Forms.Services
     public interface IFileSystem
     {
         event Action<FileSystemWatcherEventArgs> Event;
-        bool WatchFolder();
-        bool WatchFolder(String path);
+        bool IsStarted { get; }
+
+        bool InitWatchFolder();
+        bool InitWatchFolder(String path);
+
         void Start();
         void Stop();
         void Resume();

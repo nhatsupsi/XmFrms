@@ -11,6 +11,7 @@ namespace ClockApp.UWP
     class ClipBoardImplementation : IClipboard
     {
         DataPackage dataPackage = new DataPackage();
+
         public string GetTextFromClipBoard()
         {
             throw new NotImplementedException();
@@ -21,6 +22,11 @@ namespace ClockApp.UWP
             dataPackage.RequestedOperation = DataPackageOperation.Copy;
             dataPackage.SetText(text);
             Clipboard.SetContent(dataPackage);
+            Xamarin.Forms.MessagingCenter.Send<ClockApp.Core.Forms.App, String>(
+                (ClockApp.Core.Forms.App)Xamarin.Forms.Application.Current,
+                "ClipBoardOnCopy",
+                text
+                );
         }
     }
 }

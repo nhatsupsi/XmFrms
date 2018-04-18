@@ -13,31 +13,51 @@ namespace ClockApp.UWP
     {
         StorageFolder storageFolder;
         public event Action<FileSystemWatcherEventArgs> Event;
+        bool isStarted = false;
 
         Windows.Storage.Search.QueryOptions queryOptions = new Windows.Storage.Search.QueryOptions(Windows.Storage.Search.CommonFolderQuery.DefaultQuery);
         Windows.Storage.Search.StorageItemQueryResult query;
         IReadOnlyList<IStorageItem> oldFileList;
 
-        public void WatchFolder()
-        {
-            startWatching();
+        public bool IsStarted {
+            get { return isStarted; }
         }
 
-        public void WatchFolder(string path)
+        public bool InitWatchFolder()
         {
-            WatchFolder();
+            initWatching();
+            return true;
         }
-        private async void startWatching()
+
+        public bool InitWatchFolder(string path)
         {
+            throw new NotImplementedException();
+        }
+        private void initWatching()
+        {
+            // FilePcker
+            https://social.msdn.microsoft.com/Forums/windowsapps/en-US/8d92a991-a1d5-4d7a-8ca5-36ed15d86d95/uwphow-make-storagefile-from-a-given-string-filepath?forum=wpdevelop
+
             storageFolder = ApplicationData.Current.LocalFolder;
 
             queryOptions.FolderDepth = Windows.Storage.Search.FolderDepth.Deep;
-            var success = await Windows.System.Launcher.LaunchFolderAsync(storageFolder);
             query = storageFolder.CreateItemQueryWithOptions(queryOptions);
-
+        }
+        public async void Start()
+        {
+            isStarted = true;
             query.ContentsChanged -= OnAppDataChanged;
             query.ContentsChanged += OnAppDataChanged;
             oldFileList = await query.GetItemsAsync();
+            var success = await Windows.System.Launcher.LaunchFolderAsync(storageFolder);
+        }
+
+        public void Stop()
+        {
+        }
+
+        public void Resume()
+        {
         }
 
         // https://docs.microsoft.com/en-us/uwp/api/windows.storage.search.istoragequeryresultbase
@@ -45,25 +65,25 @@ namespace ClockApp.UWP
         // https://docs.microsoft.com/en-us/uwp/api/windows.storage.istorageitem
         private async void OnAppDataChanged(Windows.Storage.Search.IStorageQueryResultBase sender, object args)
         {
+            FileSystemWatcherObject o = new FileSystemWatcherObject(storageFolder.DisplayName, GetPath(), TargetType.Folder);
+            Event?.Invoke(FileSystemWatcherEventArgs.CreateContentChangedEvent(o));
+
             var newFileList = await query.GetItemsAsync();
             DiffSet diffSet = await Diff(oldFileList, newFileList);
             oldFileList = newFileList;
             foreach (IStorageItem file in diffSet.Added)
             {
-                System.Diagnostics.Debug.WriteLine((file.IsOfType(StorageItemTypes.Folder) ? TargetType.Folder : TargetType.File));
-                FileSystemWatcherObject o = new FileSystemWatcherObject(file.Name, file.Path, (file.IsOfType(StorageItemTypes.Folder) ? TargetType.Folder : TargetType.File));
+                o = new FileSystemWatcherObject(file.Name, file.Path, (file.IsOfType(StorageItemTypes.Folder) ? TargetType.Folder : TargetType.File));
                 Event?.Invoke(FileSystemWatcherEventArgs.CreateCreatedEvent(o));
             }
             foreach (IStorageItem file in diffSet.Deleted)
             {
-                System.Diagnostics.Debug.WriteLine((file.IsOfType(StorageItemTypes.Folder) ? TargetType.Folder : TargetType.File));
-                FileSystemWatcherObject o = new FileSystemWatcherObject(file.Name, file.Path, (file.IsOfType(StorageItemTypes.Folder) ? TargetType.Folder : TargetType.File));
+                o = new FileSystemWatcherObject(file.Name, file.Path, (file.IsOfType(StorageItemTypes.Folder) ? TargetType.Folder : TargetType.File));
                 Event?.Invoke(FileSystemWatcherEventArgs.CreateDeletedEvent(o));
             }
             foreach (IStorageItem file in diffSet.Changed)
             {
-                System.Diagnostics.Debug.WriteLine((file.IsOfType(StorageItemTypes.Folder) ? TargetType.Folder : TargetType.File));
-                FileSystemWatcherObject o = new FileSystemWatcherObject(file.Name, file.Path, (file.IsOfType(StorageItemTypes.Folder) ? TargetType.Folder : TargetType.File));
+                o = new FileSystemWatcherObject(file.Name, file.Path, (file.IsOfType(StorageItemTypes.Folder) ? TargetType.Folder : TargetType.File));
                 Event?.Invoke(FileSystemWatcherEventArgs.CreateChangedEvent(o));
             }
 
@@ -133,5 +153,6 @@ namespace ClockApp.UWP
                 Changed = changed
             };
         }
+
     }
 }

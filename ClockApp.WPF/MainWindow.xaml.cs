@@ -35,7 +35,7 @@ namespace ClockApp.WPF
             this.WindowStyle = WindowStyle.SingleBorderWindow;
             
             ShowStatusBoardImplementation notifyIcon = new ShowStatusBoardImplementation();
-            notifyIcon.CreateNotifyIcon(app.tabbedPageContent);
+            notifyIcon.CreateNotifyIcon(app.TabbedPageContent);
         }
     }
 }

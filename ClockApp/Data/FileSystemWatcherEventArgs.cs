@@ -7,7 +7,8 @@ namespace ClockApp.Core.Forms.Data
         Changed,
         Created,
         Deleted,
-        Renamed
+        Renamed,
+        ContentChanged
     }
     public class FileSystemWatcherEventArgs : EventArgs
     {
@@ -50,10 +51,16 @@ namespace ClockApp.Core.Forms.Data
         {
             return new FileSystemWatcherEventArgs(target, oldTargetStat, ActionType.Renamed);
         }
+        public static FileSystemWatcherEventArgs CreateContentChangedEvent(FileSystemWatcherObject target)
+        {
+            return new FileSystemWatcherEventArgs(target, ActionType.ContentChanged);
+        }
         public override string ToString()
         {
             if (actionType == ActionType.Renamed && oldTargetStat!=null)
                 return String.Format("{0} {1} ({3}) is {4} to {2}", date.ToString("h:mm:ss tt"), oldTargetStat.Name, target.Name, target.Type, actionType);
+            else if (actionType == ActionType.ContentChanged)
+                return String.Format("{0} Content of {1} ({2}) is Changed", date.ToString("h:mm:ss tt"), target.Name, target.Type);
             else
                 return String.Format("{0} {1} ({2}) is {3}", date.ToString("h:mm:ss tt"), target.Name, target.Type, actionType);
         }

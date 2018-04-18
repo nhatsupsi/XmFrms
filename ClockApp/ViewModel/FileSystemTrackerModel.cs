@@ -20,7 +20,6 @@ namespace ClockApp.Core.Forms.ViewModel
             this.platformType = platformType;
 
             watcher.Event += Watcher_Event;
-            startWatching();
         }
 
         private void Watcher_Event(Data.FileSystemWatcherEventArgs e)
@@ -36,6 +35,7 @@ namespace ClockApp.Core.Forms.ViewModel
                 if (value != pathText)
                 {
                     pathText = value;
+                    PropertyChanged(this, new PropertyChangedEventArgs("PathText"));
                 }
             }
         }
@@ -53,7 +53,10 @@ namespace ClockApp.Core.Forms.ViewModel
         }
         public void pageOnAppearing()
         {
-            watcher.Resume();
+            if (!watcher.IsStarted)
+                startWatching();
+            else
+                watcher.Resume();
         }
         public void pageOnDisappearing()
         {
@@ -66,8 +69,11 @@ namespace ClockApp.Core.Forms.ViewModel
                 case Data.PlatformType.MacOS:
                 case Data.PlatformType.UWP:
                 case Data.PlatformType.WPF:
-                    if(watcher.WatchFolder())
+                    if (watcher.InitWatchFolder())
+                    { 
                         PathText = watcher.GetPath();
+                        watcher.Start();
+                    }
                     break;
             }
         }
