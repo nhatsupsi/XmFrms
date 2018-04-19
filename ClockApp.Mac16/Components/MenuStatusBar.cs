@@ -2,15 +2,15 @@
 using AppKit;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(ClockApp.Mac16.ShowStatusBoardImplementation))]
+[assembly: Dependency(typeof(ClockApp.Mac16.MenuStatusBar))]
 namespace ClockApp.Mac16
 {
-    public class ShowStatusBoardImplementation
+    public class MenuStatusBar
     {
         public NSStatusBar statusBar;
         Core.Forms.App app;
 
-        public ShowStatusBoardImplementation(Core.Forms.App app)
+        public MenuStatusBar(Core.Forms.App app)
         {
             statusBar = NSStatusBar.SystemStatusBar;
             this.app = app;
