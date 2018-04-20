@@ -51,6 +51,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\GirdViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -88,6 +92,10 @@
     <Compile Include="ViewModel\PasswordSaveModel.cs" />
     <Compile Include="Services\IClipboard.cs" />
     <Compile Include="Services\IFileSystem.cs" />
+    <Compile Include="Views\GirdViewPage.xaml.cs">
+      <DependentUpon>GirdViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\GirdViewPageModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation">
