@@ -18,7 +18,7 @@
                     
                     <ColumnDefinition>
                       <ColumnDefinition.Width>
-                        <OnPlatform x:TypeArguments="GridLength" iOS="0.7*"  Default="*" />
+                            <OnPlatform x:TypeArguments="GridLength" iOS="0.7*" WinPhone="*" Default="*" />
                       </ColumnDefinition.Width>
                     </ColumnDefinition>
                     <ColumnDefinition Width="*" />
@@ -40,7 +40,7 @@
                                         
                                         <ColumnDefinition>
                                           <ColumnDefinition.Width>
-                                            <OnPlatform x:TypeArguments="GridLength" iOS="0.7*"  Default="*" />
+                                            <OnPlatform x:TypeArguments="GridLength" iOS="0.7*" WinPhone="*" Default="*" />
                                           </ColumnDefinition.Width>
                                         </ColumnDefinition>
                                         <ColumnDefinition Width="*" />

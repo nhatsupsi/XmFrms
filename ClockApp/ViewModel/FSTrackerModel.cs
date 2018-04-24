@@ -62,7 +62,14 @@ namespace ClockApp.Core.Forms.ViewModel
         }
         private void Watcher_Event(Data.FileSystemWatcherEventArgs e)
         {
-            ChangeList.Add(e);
+            if(platformType== Data.PlatformType.UWP)
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    ChangeList.Add(e);
+                });
+            else
+                ChangeList.Add(e);
+
         }
 
 

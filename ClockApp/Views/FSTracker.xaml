@@ -27,7 +27,7 @@
                     
                     <ColumnDefinition>
                       <ColumnDefinition.Width>
-                        <OnPlatform x:TypeArguments="GridLength" iOS="0.3*"  Default="0.2*" />
+                            <OnPlatform x:TypeArguments="GridLength" iOS="0.3*" WinPhone="0.2*" Default="0.2*" />
                       </ColumnDefinition.Width>
                     </ColumnDefinition>
                   <ColumnDefinition Width="0.5*" />
