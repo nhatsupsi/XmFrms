@@ -57,12 +57,40 @@ namespace ClockApp.Core.Forms.Data
         }
         public override string ToString()
         {
-            if (actionType == ActionType.Renamed && oldTargetStat!=null)
+            if (actionType == ActionType.Renamed && oldTargetStat != null)
                 return String.Format("{0} {1} ({3}) is {4} to {2}", date.ToString("h:mm:ss tt"), oldTargetStat.Name, target.Name, target.Type, actionType);
             else if (actionType == ActionType.ContentChanged)
                 return String.Format("{0} Content of {1} ({2}) is Changed", date.ToString("h:mm:ss tt"), target.Name, target.Type);
             else
                 return String.Format("{0} {1} ({2}) is {3}", date.ToString("h:mm:ss tt"), target.Name, target.Type, actionType);
+        }
+
+        /***************** Data to stamp *****************/
+        public String Date
+        {
+            get
+            {
+                return date.ToString("h:mm:ss tt");
+            }
+        }
+        public String TargetName
+        {
+            get
+            {
+                return target.Name;//target.Name.Replace(",", "");
+            }
+        }
+        public string SimpleMessage
+        {
+            get
+            {
+                if (actionType == ActionType.Renamed && oldTargetStat != null)
+                    return String.Format("{0} ({2}) is {3} to {1}", oldTargetStat.Name, target.Name, target.Type, actionType);
+                else if (actionType == ActionType.ContentChanged)
+                    return String.Format("Content of {0} ({1}) is Changed", target.Name, target.Type);
+                else
+                    return String.Format("{0} ({1}) is {2}", target.Name, target.Type, actionType);
+            }
         }
 
     }

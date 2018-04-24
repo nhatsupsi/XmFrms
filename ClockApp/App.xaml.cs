@@ -51,7 +51,7 @@ namespace ClockApp.Core.Forms
             fileSystemTracker = new Views.FileSystemTracker(platformType) { Title = "File System" };
 
 
-            tabbedPageContent = new ContentPage[] { helloXamarinPage, passwordSave, fileSystemTracker , new Views.GirdViewPage(){ Title = "Grid ViewPage" }};
+            tabbedPageContent = new ContentPage[] { helloXamarinPage, passwordSave, fileSystemTracker, new Views.UsersManager() { Title = "Users Manager" }, new Views.FSTracker(platformType) { Title = "FSTracker" }};
 
             foreach (ContentPage page in tabbedPageContent)
             {

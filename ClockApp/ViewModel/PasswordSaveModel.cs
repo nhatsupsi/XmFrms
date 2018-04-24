@@ -35,7 +35,6 @@ namespace ClockApp.Core.Forms.ViewModel
             {
                 return new Command(() => {
                     DependencyService.Get<IClipboard>().OnCopy(passwordText);
-                    //Device.BeginInvokeOnMainThread(async () => { await Application.Current.MainPage.DisplayAlert("Message", "Copy: " + passwordText, "Ok"); });
                 });
             }
         }

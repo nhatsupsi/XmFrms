@@ -49,7 +49,7 @@ namespace ClockApp.Mac16
                 numDataChanged++;
                 String message = numDataChanged + " " + evnt;
                 System.Diagnostics.Debug.WriteLine(evnt);
-                FileSystemWatcherObject o = new FileSystemWatcherObject(evnt.Path, evnt.Path, (evnt.Flags.HasFlag(FSEventStreamEventFlags.ItemIsDir) ? TargetType.Folder : TargetType.File));
+                FileSystemWatcherObject o = new FileSystemWatcherObject(evnt.Path.Replace(path+"/", ""), evnt.Path, (evnt.Flags.HasFlag(FSEventStreamEventFlags.ItemIsDir) ? TargetType.Folder : TargetType.File));
                 if(evnt.Flags.HasFlag(FSEventStreamEventFlags.ItemRenamed))
                 {
                     Event?.Invoke(FileSystemWatcherEventArgs.CreateRenamedEvent(o));

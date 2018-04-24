@@ -11,6 +11,6 @@
          </StackLayout.Padding>
         <Entry Placeholder="num Tel." Text="{Binding InputCallNumber,Mode=TwoWay}" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" WidthRequest="200"/>
         <Button Text="{Binding InputCallNumberText,Mode=OneWay}" Command="{Binding InputCallCommand}" HorizontalOptions="CenterAndExpand" />
-        <Button Text="{Binding DefaultCallNumberText}" Command="{Binding DefaultCallCommand}" HorizontalOptions="CenterAndExpand" />
+        <Button Text="{Binding DefaultCallNumberText}" Command="{Binding DefaultCallCommand}" HorizontalOptions="CenterAndExpand"/>
     </StackLayout>
 </ContentPage>

@@ -31,15 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml" />
-    <EmbeddedResource Include="Views\Clock.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\ClockSave.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\ClockSaveBinding.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -51,9 +43,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\GirdViewPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    <EmbeddedResource Include="Views\FSTracker.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UsersManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -68,17 +64,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\FileSystemTrackerModel.cs" />
-    <Compile Include="Views\Clock.xaml.cs">
-      <DependentUpon>Clock.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModel\ClockModel.cs" />
     <Compile Include="Views\ClockSave.xaml.cs">
       <DependentUpon>ClockSave.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ClockSaveBinding.xaml.cs">
-      <DependentUpon>ClockSaveBinding.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModel\ClockSaveBindingModel.cs" />
     <Compile Include="Views\FileSystemTracker.xaml.cs">
       <DependentUpon>FileSystemTracker.xaml</DependentUpon>
     </Compile>
@@ -92,10 +80,15 @@
     <Compile Include="ViewModel\PasswordSaveModel.cs" />
     <Compile Include="Services\IClipboard.cs" />
     <Compile Include="Services\IFileSystem.cs" />
-    <Compile Include="Views\GirdViewPage.xaml.cs">
-      <DependentUpon>GirdViewPage.xaml</DependentUpon>
+    <Compile Include="Views\FSTracker.xaml.cs">
+      <DependentUpon>FSTracker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\GirdViewPageModel.cs" />
+    <Compile Include="Views\UsersManager.xaml.cs">
+      <DependentUpon>UsersManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\FSTrackerModel.cs" />
+    <Compile Include="ViewModel\UsersManagerModel.cs" />
+    <Compile Include="Data\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation">

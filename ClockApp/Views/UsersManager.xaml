@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClockApp.Core.Forms.Views.UsersManager">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <Grid Margin="0,20,20,0">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="AUTO" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Column="0" Text="DisplayName" FontAttributes="Bold" />
+                <Label Grid.Column="1" Text="Password" FontAttributes="Bold" />
+                <Label Grid.Column="2" Text="Email" HorizontalTextAlignment="End" FontAttributes="Bold" />
+            </Grid>
+            <!-- 
+            // https://github.com/xamarin/xamarin-forms-samples/blob/master/Templates/DataTemplates/DataTemplates/XAML/WithDataTemplatePage.xaml -->
+            <ListView Margin="0,20,0,0" ItemsSource="{Binding UserList}"  SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                                <Grid>
+                                    <Label Grid.Column="0" Text="{Binding DisplayName}" FontAttributes="Bold" />
+                                    <Grid Grid.Column="1">
+                                        <Label Grid.Column="0" Text="******" />
+                                        <Button Grid.Column="1" Text="Copy" Command="{Binding OnCopyClicked}" CommandParameter ="{Binding}"/>
+                                    </Grid>
+                                    <Label Grid.Column="2" Text="{Binding Email}" HorizontalTextAlignment="End" />
+                                </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
