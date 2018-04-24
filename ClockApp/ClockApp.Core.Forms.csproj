@@ -31,17 +31,9 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml" />
-    <EmbeddedResource Include="Views\ClockSave.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\PhoneCall.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\PasswordSave.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FSTracker.xaml">
       <SubType>Designer</SubType>
@@ -63,21 +55,10 @@
       <DependentUpon>HelloXamarin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\FileSystemTrackerModel.cs" />
-    <Compile Include="Views\ClockSave.xaml.cs">
-      <DependentUpon>ClockSave.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\FileSystemTracker.xaml.cs">
-      <DependentUpon>FileSystemTracker.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\PhoneCall.xaml.cs">
       <DependentUpon>PhoneCall.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\PhoneCallModel.cs" />
-    <Compile Include="Views\PasswordSave.xaml.cs">
-      <DependentUpon>PasswordSave.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModel\PasswordSaveModel.cs" />
     <Compile Include="Services\IClipboard.cs" />
     <Compile Include="Services\IFileSystem.cs" />
     <Compile Include="Views\FSTracker.xaml.cs">
@@ -116,12 +97,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\FileSystemTracker.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="HelloXamarin.xaml">

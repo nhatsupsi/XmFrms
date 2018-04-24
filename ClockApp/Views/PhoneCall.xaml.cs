@@ -15,10 +15,5 @@ namespace ClockApp.Core.Forms.Views
             var pageModel = new ViewModel.PhoneCallModel(platformType);
             BindingContext = pageModel;
         }
-        protected override void OnAppearing()
-        {
-            //if (platformType == Data.PlatformType.MacOS)
-            //    DependencyService.Get<IShowStatusBoard>().Create(App.tabbedPageContent);
-        }
     }
 }

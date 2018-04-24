@@ -4,17 +4,28 @@
              x:Class="ClockApp.Core.Forms.Views.UsersManager">
     <ContentPage.Content>
         <StackLayout Margin="20">
+            <StackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness"
+                            iOS="20, 20, 20, 20"
+                            Android="10"
+                            WinPhone="15" Default="5"/>
+            </StackLayout.Padding>
             <Grid Margin="0,20,20,0">
                 <Grid.RowDefinitions>
                   <RowDefinition Height="AUTO" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="*" />
-                  <ColumnDefinition Width="*" />
-                  <ColumnDefinition Width="*" />
+                    
+                    <ColumnDefinition>
+                      <ColumnDefinition.Width>
+                        <OnPlatform x:TypeArguments="GridLength" iOS="0.7*"  Default="*" />
+                      </ColumnDefinition.Width>
+                    </ColumnDefinition>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 
-                <Label Grid.Column="0" Text="DisplayName" FontAttributes="Bold" />
+                <Label Grid.Column="0" Text="Name" FontAttributes="Bold" />
                 <Label Grid.Column="1" Text="Password" FontAttributes="Bold" />
                 <Label Grid.Column="2" Text="Email" HorizontalTextAlignment="End" FontAttributes="Bold" />
             </Grid>
@@ -25,6 +36,16 @@
                     <DataTemplate>
                         <ViewCell>
                                 <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        
+                                        <ColumnDefinition>
+                                          <ColumnDefinition.Width>
+                                            <OnPlatform x:TypeArguments="GridLength" iOS="0.7*"  Default="*" />
+                                          </ColumnDefinition.Width>
+                                        </ColumnDefinition>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
                                     <Label Grid.Column="0" Text="{Binding DisplayName}" FontAttributes="Bold" />
                                     <Grid Grid.Column="1">
                                         <Label Grid.Column="0" Text="******" />

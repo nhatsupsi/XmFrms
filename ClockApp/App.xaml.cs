@@ -8,8 +8,6 @@ namespace ClockApp.Core.Forms
     {
         TabbedPage tabbedPage;
         HelloXamarin helloXamarinPage;
-        Views.PasswordSave passwordSave;
-        Views.FileSystemTracker fileSystemTracker;
 
         ContentPage[] tabbedPageContent;
 
@@ -47,11 +45,9 @@ namespace ClockApp.Core.Forms
 
 
             helloXamarinPage = new HelloXamarin(platformType) { Title = "Hello Xamarin" };
-            passwordSave = new Views.PasswordSave(platformType) { Title = "Password save" };
-            fileSystemTracker = new Views.FileSystemTracker(platformType) { Title = "File System" };
 
 
-            tabbedPageContent = new ContentPage[] { helloXamarinPage, passwordSave, fileSystemTracker, new Views.UsersManager() { Title = "Users Manager" }, new Views.FSTracker(platformType) { Title = "FSTracker" }};
+            tabbedPageContent = new ContentPage[] { helloXamarinPage, new Views.UsersManager() { Title = "Users Manager" }, new Views.FSTracker(platformType) { Title = "File System" }};
 
             foreach (ContentPage page in tabbedPageContent)
             {

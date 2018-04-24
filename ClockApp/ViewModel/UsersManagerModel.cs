@@ -35,6 +35,9 @@ namespace ClockApp.Core.Forms.ViewModel
         }
         public UsersManagerModel()
         {
+            MessagingCenter.Subscribe<App, String>((App)Application.Current, "ClipBoardOnCopy", (sender, textFromClipBoard) => {
+                Device.BeginInvokeOnMainThread(async () => { await Application.Current.MainPage.DisplayAlert("Message", "Copy: " + textFromClipBoard, "Ok"); });
+            });
             for (int i = 1; i < 20; i++)
             {
                 UserList.Add(new User { DisplayName = "User "+i.ToString("00"), Password = String.Format("{0}{0}{0}{0}", i) });
