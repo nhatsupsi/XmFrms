@@ -2,6 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ClockApp.Core.Forms.Views.FSTracker">
     <ContentPage.Content>
         <StackLayout Margin="20">
+            <StackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness"
+                            iOS="20, 20, 20, 20"
+                            Android="10"
+                            WinPhone="15" Default="5"/>
+            </StackLayout.Padding>
             <Grid Margin="0,20,20,0">
                 <Grid.RowDefinitions>
                   <RowDefinition Height="AUTO" />
@@ -10,7 +16,7 @@
                     
                     <ColumnDefinition>
                       <ColumnDefinition.Width>
-                        <OnPlatform x:TypeArguments="GridLength" Default="0.3*" />
+                            <OnPlatform x:TypeArguments="GridLength" Default="0.3*" />
                       </ColumnDefinition.Width>
                     </ColumnDefinition>
                   <ColumnDefinition Width="*" />
@@ -24,13 +30,15 @@
                   <RowDefinition Height="AUTO" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    
+                    <!--
                     <ColumnDefinition>
                       <ColumnDefinition.Width>
-                            <OnPlatform x:TypeArguments="GridLength" iOS="0.3*" WinPhone="0.2*" Default="0.2*" />
+                            <OnPlatform x:TypeArguments="GridLength" iOS="0.3*" WinPhone="0.2*" Default="0.2*"/>
                       </ColumnDefinition.Width>
                     </ColumnDefinition>
-                  <ColumnDefinition Width="0.5*" />
+                    -->
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.5*" />
                   <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 
