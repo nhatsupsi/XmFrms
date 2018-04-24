@@ -13,12 +13,15 @@
                   <RowDefinition Height="AUTO" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    
+
+                    <!--
                     <ColumnDefinition>
                       <ColumnDefinition.Width>
                             <OnPlatform x:TypeArguments="GridLength" Default="0.3*" />
                       </ColumnDefinition.Width>
                     </ColumnDefinition>
+                    -->
+                  <ColumnDefinition Width="AUTO" />
                   <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 
@@ -37,7 +40,7 @@
                       </ColumnDefinition.Width>
                     </ColumnDefinition>
                     -->
-                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.25*" />
                     <ColumnDefinition Width="0.5*" />
                   <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
@@ -57,7 +60,7 @@
                                       <RowDefinition Height="AUTO" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                      <ColumnDefinition Width="0.2*" />
+                                      <ColumnDefinition Width="0.25*" />
                                       <ColumnDefinition Width="0.5*" />
                                       <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
