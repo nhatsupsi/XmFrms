@@ -14,22 +14,22 @@ namespace ClockApp.Core.Forms.Data
     {
         public DateTime date;
 
-        public FileSystemWatcherObject target;
-        public FileSystemWatcherObject oldTargetStat=null;
-        public ActionType actionType;
+        public FileSystemWatcherObject Target { get; set; }
+        public FileSystemWatcherObject OldTargetStat { get; set; }
+        public ActionType ActionType { get; set; }
 
         FileSystemWatcherEventArgs(FileSystemWatcherObject target, ActionType actionType)
         {
-            this.date = DateTime.Now;
-            this.target = target;
-            this.actionType = actionType;
+            date = DateTime.Now;
+            Target = target;
+            ActionType = actionType;
         }
         FileSystemWatcherEventArgs(FileSystemWatcherObject target, FileSystemWatcherObject oldTargetStat, ActionType actionType)
         {
-            this.date = DateTime.Now;
-            this.target = target;
-            this.oldTargetStat = oldTargetStat;
-            this.actionType = actionType;
+            date = DateTime.Now;
+            Target = target;
+            OldTargetStat = oldTargetStat;
+            ActionType = actionType;
         }
         public static FileSystemWatcherEventArgs CreateChangedEvent(FileSystemWatcherObject target)
         {
@@ -57,12 +57,12 @@ namespace ClockApp.Core.Forms.Data
         }
         public override string ToString()
         {
-            if (actionType == ActionType.Renamed && oldTargetStat != null)
-                return String.Format("{0} {1} ({3}) is {4} to {2}", date.ToString("h:mm:ss tt"), oldTargetStat.Name, target.Name, target.Type, actionType);
-            else if (actionType == ActionType.ContentChanged)
-                return String.Format("{0} Content of {1} ({2}) is Changed", date.ToString("h:mm:ss tt"), target.Name, target.Type);
+            if (ActionType == ActionType.Renamed && OldTargetStat != null)
+                return String.Format("{0} {1} ({3}) is {4} to {2}", date.ToString("h:mm:ss tt"), OldTargetStat.Name, Target.Name, Target.Type, ActionType);
+            else if (ActionType == ActionType.ContentChanged)
+                return String.Format("{0} Content of {1} ({2}) is Changed", date.ToString("h:mm:ss tt"), Target.Name, Target.Type);
             else
-                return String.Format("{0} {1} ({2}) is {3}", date.ToString("h:mm:ss tt"), target.Name, target.Type, actionType);
+                return String.Format("{0} {1} ({2}) is {3}", date.ToString("h:mm:ss tt"), Target.Name, Target.Type, ActionType);
         }
 
         /***************** Data to stamp *****************/
@@ -77,19 +77,19 @@ namespace ClockApp.Core.Forms.Data
         {
             get
             {
-                return target.Name;//target.Name.Replace(",", "");
+                return Target.Name;//target.Name.Replace(",", "");
             }
         }
         public string SimpleMessage
         {
             get
             {
-                if (actionType == ActionType.Renamed && oldTargetStat != null)
-                    return String.Format("{0} ({2}) is {3} to {1}", oldTargetStat.Name, target.Name, target.Type, actionType);
-                else if (actionType == ActionType.ContentChanged)
-                    return String.Format("Content of {0} ({1}) is Changed", target.Name, target.Type);
+                if (ActionType == ActionType.Renamed && OldTargetStat != null)
+                    return String.Format("{0} ({2}) is {3} to {1}", OldTargetStat.Name, Target.Name, Target.Type, ActionType);
+                else if (ActionType == ActionType.ContentChanged)
+                    return String.Format("Content of {0} ({1}) is Changed", Target.Name, Target.Type);
                 else
-                    return String.Format("{0} ({1}) is {2}", target.Name, target.Type, actionType);
+                    return String.Format("{0} ({1}) is {2}", Target.Name, Target.Type, ActionType);
             }
         }
 
