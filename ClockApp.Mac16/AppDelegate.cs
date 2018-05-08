@@ -28,9 +28,6 @@ namespace ClockApp.Mac16
             MenuStatusBar menuStatusBar = new MenuStatusBar(app);
             menuStatusBar.Create(app.TabbedPageContent);
 
-            var popupDialog = new NSMenuItem("try");
-            MainWindow.Menu.AddItem(popupDialog);
-
             base.DidFinishLaunching(notification);
         }
     }

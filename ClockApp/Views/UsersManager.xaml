@@ -15,14 +15,6 @@
                   <RowDefinition Height="AUTO" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-
-                    <!--
-                    <ColumnDefinition>
-                      <ColumnDefinition.Width>
-                            <OnPlatform x:TypeArguments="GridLength" iOS="0.7*" WinPhone="*" Default="*" />
-                      </ColumnDefinition.Width>
-                    </ColumnDefinition>
-                    -->
                     <ColumnDefinition Width="0.7*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -40,13 +32,6 @@
                         <ViewCell>
                                 <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <!--
-                                        <ColumnDefinition>
-                                          <ColumnDefinition.Width>
-                                            <OnPlatform x:TypeArguments="GridLength" iOS="0.7*" WinPhone="*" Default="*" />
-                                          </ColumnDefinition.Width>
-                                        </ColumnDefinition>
-                                    -->
                                     <ColumnDefinition Width="0.7*" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />

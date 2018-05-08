@@ -13,14 +13,6 @@
                   <RowDefinition Height="AUTO" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-
-                    <!--
-                    <ColumnDefinition>
-                      <ColumnDefinition.Width>
-                            <OnPlatform x:TypeArguments="GridLength" Default="0.3*" />
-                      </ColumnDefinition.Width>
-                    </ColumnDefinition>
-                    -->
                   <ColumnDefinition Width="AUTO" />
                   <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
@@ -33,13 +25,6 @@
                   <RowDefinition Height="AUTO" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <!--
-                    <ColumnDefinition>
-                      <ColumnDefinition.Width>
-                            <OnPlatform x:TypeArguments="GridLength" iOS="0.3*" WinPhone="0.2*" Default="0.2*"/>
-                      </ColumnDefinition.Width>
-                    </ColumnDefinition>
-                    -->
                     <ColumnDefinition Width="0.25*" />
                     <ColumnDefinition Width="0.5*" />
                   <ColumnDefinition Width="*" />
@@ -50,7 +35,8 @@
                 <Label Grid.Column="2" Text="Message" FontAttributes="Bold" />
             </Grid>
             <!-- 
-            // https://github.com/xamarin/xamarin-forms-samples/blob/master/Templates/DataTemplates/DataTemplates/XAML/WithDataTemplatePage.xaml -->
+            https://github.com/xamarin/xamarin-forms-samples/blob/master/Templates/DataTemplates/DataTemplates/XAML/WithDataTemplatePage.xaml 
+            -->
             <ListView Margin="0,20,0,0" ItemsSource="{Binding ChangeList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
