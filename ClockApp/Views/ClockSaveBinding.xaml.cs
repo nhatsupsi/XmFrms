@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using ClockApp.ViewModel;
 using Xamarin.Forms;
 
-namespace ClockApp.Views
+namespace ClockApp.Core.Forms.Views
 {
     public partial class ClockSaveBinding : ContentPage
     {
         public ClockSaveBinding()
         {
             InitializeComponent();
-            var pageModel = new ClockSaveBindingModel();
+            var pageModel = new ViewModel.ClockSaveBindingModel();
             BindingContext = pageModel;
         }
     }

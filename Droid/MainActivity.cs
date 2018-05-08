@@ -10,7 +10,7 @@ using Android.OS;
 
 namespace ClockApp.Droid
 {
-    [Activity(Label = "ClockApp.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "ClockApp.Droid", Icon = "@drawable/clockIcon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
@@ -22,7 +22,7 @@ namespace ClockApp.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
-            LoadApplication(new App());
+            LoadApplication(new ClockApp.Core.Forms.App(Core.Forms.Data.PlatformType.Android));
         }
     }
 }
